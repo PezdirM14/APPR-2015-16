@@ -7,6 +7,10 @@ uvozi.podatke <- function() {
   
          tabela_registracije<-tabela_registracije_SLO<-read.csv2("registracije.csv",na.strings = "-",stringsAsFactors = FALSE,
                                   fileEncoding = "Windows-1250",col.names = c("Leto","2004", "2005","2006","2007","2008","2009","2010","2011","2012","2013","2014"))
+
+         tabela_indeks_cen_mot_voz_SLO<-read.csv2("indeks_cen_mot_voz_SLO.csv",skip=1,na.strings="-",stringsAsFactors = FALSE,
+                                  fileEncoding = "Windows-1250",col.names = c("","Leto in mesec","Tekoči mesec na isti mesec prejšnjega leta"))
+         
 }
 
 # Zapišimo podatke v razpredelnico druzine.
