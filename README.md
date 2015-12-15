@@ -5,8 +5,7 @@ Avtor: Martin Pezdir
 Repozitorij z gradivi pri predmetu APPR v študijskem letu 2015/16.
 
 ## Tematika
-
-Moj projekt bo govoril o evropskem ter slovenskem trgu motornih vozil ter kako je afera Volkswagen na te trge vplivala. Najprej bom obdelal statistične podatke na splošno, te bom pridobil iz http://www.stat.si/statweb ter http://ec.europa.eu/eurostat. Obenem bom spremljal tudi zgodovino cen delnic na teh trgih https://www.boerse-stuttgart.de/. Pomagal si bom tudi z http://www.statista.com/topics/1574/volkswagen/.
+Moj projekt bo govoril o evropskem ter slovenskem razvoju trga motornih vozil v zadnjih nekaj letih, kako se je število motornih števil spreminjalo, o nihanju prometnih nesreč ter kako je kriza vplivala na ta trg.Najprej bom obdelal statistične podatke na splošno, te bom pridobil iz http://www.stat.si/statweb ter http://ec.europa.eu/eurostat. Obenem bom spremljal tudi zgodovino cen delnic na teh trgih https://www.boerse-stuttgart.de/. Pomagal si bom tudi z http://www.statista.com/topics/1574/volkswagen/.
 ## Program
 
 Glavni program in poročilo se nahajata v datoteki `projekt.Rmd`. Ko ga prevedemo,
