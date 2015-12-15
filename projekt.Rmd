@@ -28,21 +28,15 @@ Moj projekt bo govoril o evropskem ter slovenskem razvoju trga motornih vozil v 
 ```{r uvoz, echo=FALSE}
 source("uvoz/uvoz.r", encoding = "UTF-8")
 ```
-
-Uvozili smo podatke o občinah v obliki CSV s statističnega urada ter v obliki HTML
-z Wikipedije. Poglejmo si začetka obeh uvoženih razpredelnic.
-
-```{r razpredelnice}
-kable(head(druzine))
-head(obcine)
+V tej fazi smo uvozil podatke v obliki CSV s statističnega urada Slovenije in Eurostata(saj bomo primerjali slovenske podatke z evropskimi) ter podatke v obliki HTML z Wikipedije. V razpredelnicah, ki smo jih ustvarili, so podatki o najrazličnejših delih trga motornih vozil, pa tudi splošna statistika, kot je recimo število prometnih nesreč, količina prevoženih kilometrov na leto glede na skupno količino voznikov. V razpredelnicah je podano tudi število prvih registracij glede na vrsto vozila, starost vozil ter indeks cen motornih vozil od leta 2004 naprej. Pa si oglejmo začetek razpredelnice o številu prometnih nesreč v Sloveniji:
+```{r}
+head(tabela_prometne_nesrece_SLO)
+```
+Tako izgledajo razpredelnice v CSV formatu.Pokažimo še začetek razpredelnice pridobljene z Wikipedije:
+```{r}
+head(tabela_Gdp)
 ```
 
-Slika \ref{fig:histogram} prikazuje porazdelitev števila naselij v občinah.
-
-```{r histogram, echo=FALSE, fig.align='center', fig.cap='Histogram števila naselij v občinah'}
-hist(obcine[,4], main = "Pogostost števila naselij",
-     xlab = "Število naselij", ylab = "Število občin")
-```
 
 ***
 
