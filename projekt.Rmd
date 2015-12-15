@@ -19,7 +19,7 @@ source("lib/libraries.r", encoding = "UTF-8")
 
 # Izbira teme
 
-Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
+Moj projekt bo govoril o evropskem ter slovenskem razvoju trga motornih vozil v zadnjih nekaj letih, kako se je število motornih števil spreminjalo, o nihanju prometnih nesreč ter kako je kriza vplivala na ta trg.Najprej bom obdelal statistične podatke na splošno, te bom pridobil iz http://www.stat.si/statweb ter http://ec.europa.eu/eurostat. Obenem bom spremljal tudi zgodovino cen delnic na teh trgih https://www.boerse-stuttgart.de/. Pomagal si bom tudi z http://www.statista.com/topics/1574/volkswagen/.
 
 ***
 
