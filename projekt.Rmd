@@ -32,7 +32,7 @@ V tej fazi smo uvozil podatke v obliki CSV s statističnega urada Slovenije in E
 ```{r}
 head(tabela_prometne_nesrece_SLO)
 ```
-Tako izgledajo razpredelnice v CSV formatu.Pokažimo še začetek razpredelnice pridobljene z Wikipedije:
+Tako izgledajo razpredelnice v CSV formatu.Pokažimo še začetek razpredelnice prodaje avtomobilov znamke Audi 2012-2015:
 ```{r}
 head(Audi_prodaja)
 ```
