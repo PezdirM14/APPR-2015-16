@@ -74,16 +74,25 @@
          Audi_prodaja<- stran %>% html_nodes(xpath ="//table") %>% .[[1]]%>% html_table(fill=TRUE)
          Audi_prodaja<-Audi_prodaja[-1,]
          names(Audi_prodaja)<-c("Mesec","2012","2013","2014","2015")
-         Audi_prodaja$Povprečno<-round((as.numeric(Audi_prodaja$`2012`)+as.numeric(Audi_prodaja$`2013`)+as.numeric(Audi_prodaja$`2014`)+as.numeric(Audi_prodaja$`2015`))/4,3)
+         Audi_prodaja$Mesec <- factor(Audi_prodaja$Mesec, levels =Audi_prodaja$Mesec,
+                                       Audi_prodaja$Mesec, ordered = TRUE)
+         Audi_prodaja[-1] <- apply(Audi_prodaja[-1], 2, as.numeric)
+         Audi_prodaja$Povprečno <- apply(Audi_prodaja[-1], 1, mean, na.rm = TRUE)
+         Audi_prodaja$Povprečno<-round(Audi_prodaja$Povprečno,3)
+         Audi_prodaja$Proizvajalec <- "Audi"
          
          
          url2<-'http://left-lane.com/european-car-sales-data/bmw/'
          stran2<-html_session(url2) %>% read_html(encoding = "Windows-1250")
-         Bmw_prodaja<-stran2%>% html_nodes(xpath ="//table") %>% .[[1]]%>% html_table(fill=TRUE)
          Bmw_prodaja<-Bmw_prodaja[-1,]
+         Bmw_prodaja<-stran2%>% html_nodes(xpath ="//table") %>% .[[1]]%>% html_table(fill=TRUE)
          names(Bmw_prodaja)<-c("Mesec","2012","2013","2014","2015")
-         Bmw_prodaja$Povprečno<-round((as.numeric(Bmw_prodaja$`2012`)+as.numeric(Bmw_prodaja$`2013`)+as.numeric(Bmw_prodaja$`2014`)+as.numeric(Bmw_prodaja$`2015`))/4,3)
-         
+         Bmw_prodaja$Mesec <- factor(Bmw_prodaja$Mesec, levels =
+                                        Bmw_prodaja$Mesec, ordered = TRUE)
+         Bmw_prodaja[-1] <- apply(Bmw_prodaja[-1], 2, as.numeric)
+         Bmw_prodaja$Povprečno <- apply(Bmw_prodaja[-1], 1, mean, na.rm = TRUE)
+         Bmw_prodaja$Povprečno<-round(Bmw_prodaja$Povprečno,3)
+         Bmw_prodaja$Proizvajalec <- "Bmw"
          
          url3<-'http://left-lane.com/european-car-sales-data/citroen/'
          stran3<-html_session(url3) %>% read_html(encoding = "Windows-1250")
@@ -91,7 +100,12 @@
          Citroen_prodaja<-Citroen_prodaja[-1,]
          names(Citroen_prodaja)<-c("Mesec","2012","2013","2014","2015")
          Citroen_prodaja$Povprečno<-round((as.numeric(Citroen_prodaja$`2012`)+as.numeric(Citroen_prodaja$`2013`)+as.numeric(Citroen_prodaja$`2014`)+as.numeric(Citroen_prodaja$`2015`))/4,3)
-         
+         Citroen_prodaja$Mesec <- factor(Citroen_prodaja$Mesec, levels =
+                                       Citroen_prodaja$Mesec, ordered = TRUE)
+         Citroen_prodaja[-1] <- apply(Citroen_prodaja[-1], 2, as.numeric)
+         Citroen_prodaja$Povprečno <- apply(Citroen_prodaja[-1], 1, mean, na.rm = TRUE)
+         Citroen_prodaja$Povprečno<-round(Citroen_prodaja$Povprečno,3)
+         Citroen_prodaja$Proizvajalec <- "Citroen"
          
          url4<-'http://left-lane.com/european-car-sales-data/ford/'
          stran4<-html_session(url4) %>% read_html(encoding = "Windows-1250")
@@ -99,7 +113,12 @@
          Ford_prodaja<-Ford_prodaja[-1,]
          names(Ford_prodaja)<-c("Mesec","2012","2013","2014","2015")
          Ford_prodaja$Povprečno<-round((as.numeric(Ford_prodaja$`2012`)+as.numeric(Ford_prodaja$`2013`)+as.numeric(Ford_prodaja$`2014`)+as.numeric(Ford_prodaja$`2015`))/4,3)
-         
+         Ford_prodaja$Mesec <- factor(Ford_prodaja$Mesec, levels =
+                                       Ford_prodaja$Mesec, ordered = TRUE)
+         Ford_prodaja[-1] <- apply(Ford_prodaja[-1], 2, as.numeric)
+         Ford_prodaja$Povprečno <- apply(Ford_prodaja[-1], 1, mean, na.rm = TRUE)
+         Ford_prodaja$Povprečno<-round(Ford_prodaja$Povprečno,3)
+         Ford_prodaja$Proizvajalec <- "Ford"
          
          url5<-'http://left-lane.com/european-car-sales-data/fiat/'
          stran5<-html_session(url5) %>% read_html(encoding = "Windows-1250")
@@ -107,7 +126,12 @@
          Fiat_prodaja<-Fiat_prodaja[-1,]
          names(Fiat_prodaja)<-c("Mesec","2012","2013","2014","2015")
          Fiat_prodaja$Povprečno<-round((as.numeric(Fiat_prodaja$`2012`)+as.numeric(Fiat_prodaja$`2013`)+as.numeric(Fiat_prodaja$`2014`)+as.numeric(Fiat_prodaja$`2015`))/4,3)
-         
+         Fiat_prodaja$Mesec <- factor(Fiat_prodaja$Mesec, levels =
+                                       Fiat_prodaja$Mesec, ordered = TRUE)
+         Fiat_prodaja[-1] <- apply(Fiat_prodaja[-1], 2, as.numeric)
+         Fiat_prodaja$Povprečno <- apply(Fiat_prodaja[-1], 1, mean, na.rm = TRUE)
+         Fiat_prodaja$Povprečno<-round(Fiat_prodaja$Povprečno,3)
+         Fiat_prodaja$Proizvajalec <- "Fiat"
          
          url6<-'http://left-lane.com/european-car-sales-data/mazda/'
          stran6<-html_session(url6) %>% read_html(encoding = "Windows-1250")
@@ -115,6 +139,12 @@
          Mazda_prodaja<-Mazda_prodaja[-1,]
          names(Mazda_prodaja)<-c("Mesec","2012","2013","2014","2015")
          Mazda_prodaja$Povprečno<-round((as.numeric(Mazda_prodaja$`2012`)+as.numeric(Mazda_prodaja$`2013`)+as.numeric(Mazda_prodaja$`2014`)+as.numeric(Mazda_prodaja$`2015`))/4,3)
+         Mazda_prodaja$Mesec <- factor(Mazda_prodaja$Mesec, levels =
+                                       Mazda_prodaja$Mesec, ordered = TRUE)
+         Mazda_prodaja[-1] <- apply(Mazda_prodaja[-1], 2, as.numeric)
+         Mazda_prodaja$Povprečno <- apply(Mazda_prodaja[-1], 1, mean, na.rm = TRUE)
+         Mazda_prodaja$Povprečno<-round(Mazda_prodaja$Povprečno,3)
+         Mazda_prodaja$Proizvajalec <- "Mazda"
          
          url7<-'http://left-lane.com/european-car-sales-data/peugeot/'
          stran7<-html_session(url7) %>% read_html(encoding = "Windows-1250")
@@ -122,6 +152,12 @@
          Peugeot_prodaja<-Peugeot_prodaja[-1,]
          names(Peugeot_prodaja)<-c("Mesec","2012","2013","2014","2015")
          Peugeot_prodaja$Povprečno<-round((as.numeric(Peugeot_prodaja$`2012`)+as.numeric(Peugeot_prodaja$`2013`)+as.numeric(Peugeot_prodaja$`2014`)+as.numeric(Peugeot_prodaja$`2015`))/4,3)
+         Peugeot_prodaja$Mesec <- factor(Peugeot_prodaja$Mesec, levels =
+                                       Peugeot_prodaja$Mesec, ordered = TRUE)
+         Peugeot_prodaja[-1] <- apply(Peugeot_prodaja[-1], 2, as.numeric)
+         Peugeot_prodaja$Povprečno <- apply(Peugeot_prodaja[-1], 1, mean, na.rm = TRUE)
+         Peugeot_prodaja$Povprečno<-round(Peugeot_prodaja$Povprečno,3)
+         Peugeot_prodaja$Proizvajalec <- "Peugeot"
          
          url8<-'http://left-lane.com/european-car-sales-data/renault/'
          stran8<-html_session(url8) %>% read_html(encoding = "Windows-1250")
@@ -129,7 +165,12 @@
          Renault_prodaja<-Renault_prodaja[-1,]
          names(Renault_prodaja)<-c("Mesec","2012","2013","2014","2015")
          Renault_prodaja$Povprečno<-round((as.numeric(Renault_prodaja$`2012`)+as.numeric(Renault_prodaja$`2013`)+as.numeric(Renault_prodaja$`2014`)+as.numeric(Renault_prodaja$`2015`))/4,3)
-         
+         Renault_prodaja$Mesec <- factor(Renault_prodaja$Mesec, levels =
+                                       Renault_prodaja$Mesec, ordered = TRUE)
+         Renault_prodaja[-1] <- apply(Renault_prodaja[-1], 2, as.numeric)
+         Renault_prodaja$Povprečno <- apply(Renault_prodaja[-1], 1, mean, na.rm = TRUE)
+         Renault_prodaja$Povprečno<-round(Renault_prodaja$Povprečno,3)
+         Renault_prodaja$Proizvajalec <- "Renault"
          
          url9<-'http://left-lane.com/european-car-sales-data/opel-vauxhall/'
          stran9<-html_session(url9) %>% read_html(encoding = "Windows-1250")
@@ -137,8 +178,20 @@
          Opel_prodaja<-Opel_prodaja[-1,]
          names(Opel_prodaja)<-c("Mesec","2012","2013","2014","2015")
          Opel_prodaja$Povprečno<-round((as.numeric(Opel_prodaja$`2012`)+as.numeric(Opel_prodaja$`2013`)+as.numeric(Opel_prodaja$`2014`)+as.numeric(Opel_prodaja$`2015`))/4,3)
+         Opel_prodaja$Mesec <- factor(Opel_prodaja$Mesec, levels =
+                                       Opel_prodaja$Mesec, ordered = TRUE)
+         Opel_prodaja[-1] <- apply(Opel_prodaja[-1], 2, as.numeric)
+         Opel_prodaja$Povprečno <- apply(Opel_prodaja[-1], 1, mean, na.rm = TRUE)
+         Opel_prodaja$Povprečno<-round(Opel_prodaja$Povprečno,3)
+         Opel_prodaja$Proizvajalec <- "Opel"
          
          library(ggplot2)
          library(dplyr)
-         ggplot(data.frame(x=1:10,y=Audi_prodaja$Povprečno[1:10]))  + aes(x=x, y=y) +geom_line() 
+         ggplot(Audi_prodaja, aes(x=Mesec, y=Povprečno, group=1)) + geom_line()
+         ggplot(Bmw_prodaja, aes(x=Mesec, y=Povprečno, group=1)) + geom_line()
+         
+         Prodaja <- rbind(Audi_prodaja, Bmw_prodaja,Citroen_prodaja,Ford_prodaja,Fiat_prodaja,Mazda_prodaja,Peugeot_prodaja,Renault_prodaja,Opel_prodaja) 
+         ggplot(Prodaja, aes(x=Mesec, y=Povprečno, group=Proizvajalec, color =
+                               Proizvajalec)) + geom_line()
+         
          
