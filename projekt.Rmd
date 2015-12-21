@@ -2,15 +2,15 @@
 title: "Poročilo pri predmetu Analiza podatkov s programom R"
 author: "Martin Pezdir"
 output:
-  word_document: default
   pdf_document:
     includes:
       in_header: lib/styles.sty
     latex_engine: xelatex
   html_document: default
+  word_document: default
 ---
 
-```{r setup, echo=FALSE, results='hide', message=FALSE}
+```{r setup, echo=FALSE, results='hide', message=FALSE,warning=FALSE}
 # Če želimo nastaviti pisave v PDF-ju, odkomentiramo
 # in sledimo navodilom v programu.
 #source("fontconfig.r", encoding = "UTF-8")
@@ -26,7 +26,7 @@ Moj projekt bo govoril o evropskem ter slovenskem razvoju trga motornih vozil v 
 
 # Obdelava, uvoz in čiščenje podatkov
 
-```{r uvoz, echo=FALSE,results='hide',message=FALSE}
+```{r uvoz, echo=FALSE,results='hide',message='FALSE'}
 source("uvoz/uvoz.r", encoding = "UTF-8")
 ```
 V tej fazi smo uvozil podatke v obliki CSV s statističnega urada Slovenije in Eurostata(saj bomo primerjali slovenske podatke z evropskimi) ter podatke o prodaji avtomobilov po znamkah v zadnjih 4 letih.V razpredelnicah, ki smo jih ustvarili, so podatki o najrazličnejših delih trga motornih vozil, pa tudi splošna statistika, kot je recimo število prometnih nesreč, količina prevoženih kilometrov na leto glede na skupno količino voznikov. V razpredelnicah je podano tudi število prvih registracij glede na vrsto vozila, starost vozil ter indeks cen motornih vozil od leta 2004 naprej. 
@@ -37,17 +37,29 @@ head(tabela_prometne_nesrece_SLO)
 ```
 
 Pokažimo začetek razpredelnice prodaje avtomobilov znamke Audi 2012-2015:
-```{r}
+```{r,echo=FALSE,results='hide',message=FALSE}
 head(Audi_prodaja)
 ```
 V tej tabeli so podatki treh tipov: 
-*nizi,
-*numerični vektorji,
-*urejeni faktorji.
+
+* nizi,
+* numerični vektorji,
+* urejeni faktorji.
 
 Ti podatki so pridobljeni iz html strani.Problem, ki smo ga imeli je bil ta, da so bili prvotni podatki tipa "character", kar je povzročalo probleme pri računanju povprečji. To težavo smo odpravili s funkcijo "as.numeric()". Pri tem smo morali stolpec mesec spremeniti v urejen faktor mesec, kar smo uporabili pri risanju grafov.
 Podatke smo zbrali še za 8 ostalih znamk in jih uredili na podoben način.
+Naslednji graf predstavlja prodajo avtomobilov,znamke z najvišjo povprečno prodajo po mesecih v zadnjih 4. letih:
+```{r,echo=FALSE,results='hide',message=FALSE}
+graf_Ford
+```
 
-```{r}
-print(skupni_graf)
+Ta graf pa predstavlja prodajo avtomobilov, znamke z najnižjo povprečno prodajo po mesecih v zadnjih 4. letih:
+```{r,echo=FALSE,results='hide',message=FALSE}
+graf_Mazda
+```
+
+Razlika med tema dvema znamkama ni tako očitna, ko pa podatke predstavimo na skupnem grafu je ta razlika več kot očitna.
+
+```{r,echo=FALSE,results='hide',message=FALSE}
+skupni_graf
 ```

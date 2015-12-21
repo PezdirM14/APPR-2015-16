@@ -22,6 +22,8 @@
 
 # Funkcija, ki uvozi podatke iz datoteke druzine.csv
 
+#Podatki za Slovenijo
+
          tabela_vozači_SLO<-read.csv2("podatki/vozaci.csv", skip=1,na.strings = "-", stringsAsFactors = FALSE,
                                   fileEncoding = "UTF-8", col.names = c("Vrsta prevoza","Leto in mesec", "Število potnikov"))
   
@@ -47,6 +49,8 @@
          
          tabela_starost_vozil_SLO<-read.csv2("podatki/starost_vozil_SLO.csv",na.strings="",stringsAsFactors = FALSE,
                                              fileEncoding = "windows-1250")
+         
+#Podatki za Eu
          
          tabela_EU_registracije_avtomobili<-read.csv2("podatki/EU_registracije.csv",na.strings=":",stringsAsFactors = FALSE, 
                                            fileEncoding = "windows-1250")
@@ -189,13 +193,13 @@
                                ggtitle("Povprečna prodaja avtomobilov znamke Mazda(2012-2015)
                                        v tisočih po mesecih")+
                                theme(plot.title = element_text(lineheight=.8, face="bold")) 
-         print(graf_Mazda)
+         
          
          graf_Ford<-ggplot(Ford_prodaja, aes(x=Mesec, y=Povprečno, group=1)) + geom_line(colour="blue")+
                                ggtitle("Povprečna prodaja avtomobilov znamke Ford(2012-2015)
                                        v tisočih po mesecih")+
                                theme(plot.title = element_text(lineheight=.8, face="bold"))
-         print(graf_Ford)
+         
                                                    
                                                     
          Prodaja <- rbind(Audi_prodaja, Bmw_prodaja,Citroen_prodaja,Ford_prodaja,Fiat_prodaja,Mazda_prodaja,Peugeot_prodaja,Renault_prodaja,Opel_prodaja) 
@@ -205,7 +209,7 @@
                                        v Europi po mesecih v tisočih")+
                               theme(plot.title = element_text(lineheight=.8, face="bold"))
          
-         print(skupni_graf)
+         
          
 
          
