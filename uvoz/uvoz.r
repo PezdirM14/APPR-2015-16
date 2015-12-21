@@ -64,9 +64,7 @@
                                                               fileEncoding = "windows-1250")
 
  #html
-         require(dplyr)
-         require(rvest)
-         require(gsubfn)
+
          
          url<-'http://left-lane.com/european-car-sales-data/audi/'
          
@@ -84,9 +82,10 @@
          
          url2<-'http://left-lane.com/european-car-sales-data/bmw/'
          stran2<-html_session(url2) %>% read_html(encoding = "Windows-1250")
-         Bmw_prodaja<-Bmw_prodaja[-1,]
+         
          Bmw_prodaja<-stran2%>% html_nodes(xpath ="//table") %>% .[[1]]%>% html_table(fill=TRUE)
          names(Bmw_prodaja)<-c("Mesec","2012","2013","2014","2015")
+         Bmw_prodaja<-Bmw_prodaja[-1,]
          Bmw_prodaja$Mesec <- factor(Bmw_prodaja$Mesec, levels =
                                         Bmw_prodaja$Mesec, ordered = TRUE)
          Bmw_prodaja[-1] <- apply(Bmw_prodaja[-1], 2, as.numeric)
@@ -185,13 +184,28 @@
          Opel_prodaja$Povprečno<-round(Opel_prodaja$Povprečno,3)
          Opel_prodaja$Proizvajalec <- "Opel"
          
-         library(ggplot2)
-         library(dplyr)
-         ggplot(Audi_prodaja, aes(x=Mesec, y=Povprečno, group=1)) + geom_line()
-         ggplot(Bmw_prodaja, aes(x=Mesec, y=Povprečno, group=1)) + geom_line()
+
+         graf_Mazda<-ggplot(Mazda_prodaja, aes(x=Mesec, y=Povprečno, group=1)) + geom_line(colour="red")+
+                               ggtitle("Povprečna prodaja avtomobilov znamke Mazda(2012-2015)
+                                       v tisočih po mesecih")+
+                               theme(plot.title = element_text(lineheight=.8, face="bold")) 
+         print(graf_Mazda)
          
+         graf_Ford<-ggplot(Ford_prodaja, aes(x=Mesec, y=Povprečno, group=1)) + geom_line(colour="blue")+
+                               ggtitle("Povprečna prodaja avtomobilov znamke Ford(2012-2015)
+                                       v tisočih po mesecih")+
+                               theme(plot.title = element_text(lineheight=.8, face="bold"))
+         print(graf_Ford)
+                                                   
+                                                    
          Prodaja <- rbind(Audi_prodaja, Bmw_prodaja,Citroen_prodaja,Ford_prodaja,Fiat_prodaja,Mazda_prodaja,Peugeot_prodaja,Renault_prodaja,Opel_prodaja) 
-         ggplot(Prodaja, aes(x=Mesec, y=Povprečno, group=Proizvajalec, color =
-                               Proizvajalec)) + geom_line()
+         skupni_graf<-ggplot(Prodaja, aes(x=Mesec, y=Povprečno, group=Proizvajalec, color =
+                               Proizvajalec)) + geom_line() +
+                               ggtitle("Povprečna prodaja avtomobilov po znamkah(2012-2015)
+                                       v Europi po mesecih v tisočih")+
+                              theme(plot.title = element_text(lineheight=.8, face="bold"))
          
+         print(skupni_graf)
+         
+
          

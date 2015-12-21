@@ -2,10 +2,12 @@
 title: "Poročilo pri predmetu Analiza podatkov s programom R"
 author: "Martin Pezdir"
 output:
+  word_document: default
   pdf_document:
-    latex_engine: xelatex
     includes:
       in_header: lib/styles.sty
+    latex_engine: xelatex
+  html_document: default
 ---
 
 ```{r setup, echo=FALSE, results='hide', message=FALSE}
@@ -19,21 +21,33 @@ source("lib/libraries.r", encoding = "UTF-8")
 
 # Izbira teme
 
-Moj projekt bo govoril o evropskem ter slovenskem razvoju trga motornih vozil v zadnjih nekaj letih, kako se je število motornih števil spreminjalo, o nihanju prometnih nesreč ter kako je kriza vplivala na ta trg.Najprej bom obdelal statistične podatke na splošno, te bom pridobil iz http://www.stat.si/statweb ter http://ec.europa.eu/eurostat. Obenem bom spremljal tudi zgodovino cen delnic na teh trgih https://www.boerse-stuttgart.de/. Pomagal si bom tudi z http://www.statista.com/topics/1574/volkswagen/.
-
+Moj projekt bo govoril o evropskem ter slovenskem razvoju trga motornih vozil v zadnjih nekaj letih, kako se je število motornih števil spreminjalo, o nihanju prometnih nesreč ter kako je kriza vplivala na ta trg.Najprej bom obdelal statistične podatke na splošno, te bom pridobil iz http://www.stat.si/statweb ter http://ec.europa.eu/eurostat. Podatke v obliki html bom pridobil s spletne strani http://left-lane.com/european-car-sales-data.
 ***
 
 # Obdelava, uvoz in čiščenje podatkov
 
-```{r uvoz, echo=FALSE}
+```{r uvoz, echo=FALSE,results='hide',message=FALSE}
 source("uvoz/uvoz.r", encoding = "UTF-8")
 ```
-V tej fazi smo uvozil podatke v obliki CSV s statističnega urada Slovenije in Eurostata(saj bomo primerjali slovenske podatke z evropskimi) ter podatke v obliki HTML z Wikipedije. V razpredelnicah, ki smo jih ustvarili, so podatki o najrazličnejših delih trga motornih vozil, pa tudi splošna statistika, kot je recimo število prometnih nesreč, količina prevoženih kilometrov na leto glede na skupno količino voznikov. V razpredelnicah je podano tudi število prvih registracij glede na vrsto vozila, starost vozil ter indeks cen motornih vozil od leta 2004 naprej. Pa si oglejmo začetek razpredelnice o številu prometnih nesreč v Sloveniji:
+V tej fazi smo uvozil podatke v obliki CSV s statističnega urada Slovenije in Eurostata(saj bomo primerjali slovenske podatke z evropskimi) ter podatke o prodaji avtomobilov po znamkah v zadnjih 4 letih.V razpredelnicah, ki smo jih ustvarili, so podatki o najrazličnejših delih trga motornih vozil, pa tudi splošna statistika, kot je recimo število prometnih nesreč, količina prevoženih kilometrov na leto glede na skupno količino voznikov. V razpredelnicah je podano tudi število prvih registracij glede na vrsto vozila, starost vozil ter indeks cen motornih vozil od leta 2004 naprej. 
+
+Pa si oglejmo začetek razpredelnice o številu prometnih nesreč v Sloveniji:
 ```{r}
 head(tabela_prometne_nesrece_SLO)
 ```
-Tako izgledajo razpredelnice v CSV formatu.Pokažimo še začetek razpredelnice prodaje avtomobilov znamke Audi 2012-2015:
+
+Pokažimo začetek razpredelnice prodaje avtomobilov znamke Audi 2012-2015:
 ```{r}
 head(Audi_prodaja)
 ```
+V tej tabeli so podatki treh tipov: 
+*nizi,
+*numerični vektorji,
+*urejeni faktorji.
 
+Ti podatki so pridobljeni iz html strani.Problem, ki smo ga imeli je bil ta, da so bili prvotni podatki tipa "character", kar je povzročalo probleme pri računanju povprečji. To težavo smo odpravili s funkcijo "as.numeric()". Pri tem smo morali stolpec mesec spremeniti v urejen faktor mesec, kar smo uporabili pri risanju grafov.
+Podatke smo zbrali še za 8 ostalih znamk in jih uredili na podoben način.
+
+```{r}
+print(skupni_graf)
+```
