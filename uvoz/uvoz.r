@@ -208,20 +208,20 @@
          graf_Mazda<-ggplot(Mazda_prodaja, aes(x=Mesec, y=Povprečno, group=1)) + geom_line(colour="red")+
                                ggtitle("Povprečna prodaja avtomobilov 
                               znamke Mazda(2012-2015) v tisočih po mesecih")+
-                               theme(plot.title = element_text(lineheight=.8, face="bold")) 
-         
+                               theme(plot.title = element_text(lineheight=.8, face="bold"),axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) 
+         graf_Mazda
          
          graf_Ford<-ggplot(Ford_prodaja, aes(x=Mesec, y=Povprečno, group=1)) + geom_line(colour="blue")+
                                ggtitle("Povprečna prodaja avtomobilov
                               znamke Ford(2012-2015) v tisočih po mesecih")+
-                               theme(plot.title = element_text(lineheight=.8, face="bold"))
+                               theme(plot.title = element_text(lineheight=.8, face="bold"),axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
         
          Prodaja <- rbind(Audi_prodaja, Bmw_prodaja,Citroen_prodaja,Ford_prodaja,Fiat_prodaja,Mazda_prodaja,Peugeot_prodaja,Renault_prodaja,Opel_prodaja) 
          skupni_graf<-ggplot(Prodaja, aes(x=Mesec, y=Povprečno, group=Proizvajalec, color =
                                Proizvajalec)) + geom_line() +
                                ggtitle("Povprečna prodaja avtomobilov po
                                 znamkah(2012-2015) v Europi po mesecih v tisočih")+
-                               theme(plot.title = element_text(lineheight=.8, face="bold"))
+                               theme(plot.title = element_text(lineheight=.8, face="bold"),axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
          
 
 

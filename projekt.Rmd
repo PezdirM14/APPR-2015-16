@@ -37,7 +37,7 @@ Pa si oglejmo razpredelnico s podatki o vseh potnikih in potniških kilometrih v
 ```{r,echo=FALSE,message=FALSE}
 tabela_Cestni_javni_linijski_prevoz_medkrajevni_in_mednarodni_SLO
 ```
-Podatki v tej razpredelnici so samo tipa "integer".
+Podatki v tej razpredelnici so samo tipa "integer". Prvi stolpec vsebuje leta po vrsti od leta 2010 do 2014. V drugem in tretjem stolpcu so numerični podatki in sicer o tem, koliko potnikov se je v posameznem letu prevozilo v Sloveniji, v cestnem javnem linijskem prevozu, ki vključuje tako medkrajevni kot mednarodni prevoz, ter o tem koliko kilometrov so vozači pri teh migracijah naredili(podatki so v milijonih kilometrov).
 
 Če te podatke predstavimo grafično, vidimo drastičen upad vozačev v letu 2012 in vzrok za to bi bilo dobro najti v naslednjih fazah.
 
@@ -57,6 +57,8 @@ V tej tabeli so podatki treh tipov:
 * numerični vektorji,
 * urejeni faktorji.
 
+V prvem stolpcu tabele so po vrsti navedeni meseci v leti, v naslednjih treh pa si po vrsti sledijo leta od 2012 do 2015. V zadnjih dveh stolpcih je navedena povprečna količina in proizvajalec avtomobila.
+
 Ti podatki so pridobljeni iz html strani. Problem, ki smo ga imeli je bil ta, da so bili prvotni podatki tipa "character", kar je povzročalo probleme pri računanju povprečji. To težavo smo odpravili s funkcijo "as.numeric()". Pri tem smo morali stolpec mesec spremeniti v urejen faktor mesec, kar smo uporabili pri risanju grafov.
 Podatke smo zbrali še za 8 ostalih znamk in jih uredili na podoben način.
 Naslednji graf predstavlja prodajo avtomobilov,znamke z najvišjo povprečno prodajo po mesecih v zadnjih 4. letih:
@@ -65,7 +67,9 @@ Naslednji graf predstavlja prodajo avtomobilov,znamke z najvišjo povprečno pro
 graf_Ford
 ```
 
-Ta graf pa predstavlja prodajo avtomobilov, znamke z najnižjo povprečno prodajo po mesecih v zadnjih 4. letih:
+\pagebreak
+
+Naslednji graf pa predstavlja prodajo avtomobilov, znamke z najnižjo povprečno prodajo po mesecih v zadnjih 4. letih:
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 graf_Mazda
