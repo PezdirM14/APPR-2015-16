@@ -45,7 +45,7 @@ Podatki v tej razpredelnici so samo tipa "integer". Prvi stolpec vsebuje leta po
 Vozaci
 ```
 
-# HTML podatki
+## HTML podatki
 
 Pokažimo še razpredelnico prodaje avtomobilov znamke Ford v letih 2012-2015:
 ```{r,echo=FALSE,message=FALSE}
