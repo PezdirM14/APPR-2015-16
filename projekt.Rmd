@@ -47,9 +47,9 @@ Vozaci
 
 ## HTML podatki
 
-Pokažimo še razpredelnico prodaje avtomobilov znamke Ford v letih 2012-2015:
+Pokažimo še razpredelnico prodaje avtomobilov znamke Bmw v letih 2012-2015:
 ```{r,echo=FALSE,message=FALSE}
-Ford_prodaja
+Bmw_prodaja
 ```
 V tej tabeli so podatki treh tipov: 
 
