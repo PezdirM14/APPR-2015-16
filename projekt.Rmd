@@ -20,25 +20,36 @@ source("lib/libraries.r", encoding = "UTF-8")
 ```
 
 # Izbira teme
-
 Moj projekt bo govoril o evropskem ter slovenskem razvoju trga motornih vozil v zadnjih nekaj letih, kako se je število motornih števil spreminjalo, o nihanju prometnih nesreč ter kako je kriza vplivala na ta trg.Najprej bom obdelal statistične podatke na splošno, te bom pridobil iz http://www.stat.si/statweb ter http://ec.europa.eu/eurostat. Podatke v obliki html bom pridobil s spletne strani http://left-lane.com/european-car-sales-data.
-***
+
 
 # Obdelava, uvoz in čiščenje podatkov
 
 ```{r uvoz, echo=FALSE,results='hide',message='FALSE'}
 source("uvoz/uvoz.r", encoding = "UTF-8")
 ```
+
+## Csv podatki
+
 V tej fazi smo uvozil podatke v obliki CSV s statističnega urada Slovenije in Eurostata(saj bomo primerjali slovenske podatke z evropskimi) ter podatke o prodaji avtomobilov po znamkah v zadnjih 4 letih.V razpredelnicah, ki smo jih ustvarili, so podatki o najrazličnejših delih trga motornih vozil, pa tudi splošna statistika, kot je recimo število prometnih nesreč, količina prevoženih kilometrov na leto glede na skupno količino voznikov. V razpredelnicah je podano tudi število prvih registracij glede na vrsto vozila, starost vozil ter indeks cen motornih vozil od leta 2004 naprej. 
 
-Pa si oglejmo začetek razpredelnice o številu prometnih nesreč v Sloveniji:
+Pa si oglejmo razpredelnico s podatki o vseh potnikih in potniških kilometrih v letih 2010-2014:
 ```{r,echo=FALSE,message=FALSE}
-tabela_prometne_nesrece_SLO
+tabela_Cestni_javni_linijski_prevoz_medkrajevni_in_mednarodni_SLO
+```
+Podatki v tej razpredelnici so samo tipa "integer".
+
+Če te podatke predstavimo grafično, vidimo drastičen upad vozačev v letu 2012 in vzrok za to bi bilo dobro najti v naslednjih fazah.
+
+```{r,echo=FALSE,message=FALSE}
+Vozaci
 ```
 
-Pokažimo začetek razpredelnice prodaje avtomobilov znamke Audi 2012-2015:
+# HTML podatki
+
+Pokažimo še razpredelnico prodaje avtomobilov znamke Ford v letih 2012-2015:
 ```{r,echo=FALSE,message=FALSE}
-Audi_prodaja
+Ford_prodaja
 ```
 V tej tabeli so podatki treh tipov: 
 
@@ -46,14 +57,16 @@ V tej tabeli so podatki treh tipov:
 * numerični vektorji,
 * urejeni faktorji.
 
-Ti podatki so pridobljeni iz html strani.Problem, ki smo ga imeli je bil ta, da so bili prvotni podatki tipa "character", kar je povzročalo probleme pri računanju povprečji. To težavo smo odpravili s funkcijo "as.numeric()". Pri tem smo morali stolpec mesec spremeniti v urejen faktor mesec, kar smo uporabili pri risanju grafov.
+Ti podatki so pridobljeni iz html strani. Problem, ki smo ga imeli je bil ta, da so bili prvotni podatki tipa "character", kar je povzročalo probleme pri računanju povprečji. To težavo smo odpravili s funkcijo "as.numeric()". Pri tem smo morali stolpec mesec spremeniti v urejen faktor mesec, kar smo uporabili pri risanju grafov.
 Podatke smo zbrali še za 8 ostalih znamk in jih uredili na podoben način.
 Naslednji graf predstavlja prodajo avtomobilov,znamke z najvišjo povprečno prodajo po mesecih v zadnjih 4. letih:
+
 ```{r,echo=FALSE,results='hide',message=FALSE}
 graf_Ford
 ```
 
 Ta graf pa predstavlja prodajo avtomobilov, znamke z najnižjo povprečno prodajo po mesecih v zadnjih 4. letih:
+
 ```{r,echo=FALSE,results='hide',message=FALSE}
 graf_Mazda
 ```

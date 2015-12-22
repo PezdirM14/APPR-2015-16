@@ -39,7 +39,8 @@
          tabela_dolzina_cest_SLO<-read.csv2("podatki/dolzina_cest_SLO.csv",na.strings="-",stringsAsFactors = FALSE,fileEncoding = "Windows-1250")
          
          tabela_Cestni_javni_linijski_prevoz_medkrajevni_in_mednarodni_SLO<-read.csv2("podatki/Cestni_javni_linijski_prevoz_medkrajevni_in_mednarodni.csv",
-                                                                                  na.strings="-",stringsAsFactors = FALSE, fileEncoding = "Windows-1250")
+                                                                                  na.strings="-",stringsAsFactors = FALSE, fileEncoding = "Windows-1250",
+                                                                                  col.names=c("Leto","Potniki v 1000","Potniški kilometri v mio"))
          
          tabela_prve_reg_vrsta_vozila_SLO_vsa<-read.csv2("podatki/prve_reg_vrsta_vozila_SLO.csv",na.strings="-",stringsAsFactors = FALSE,
                                                      fileEncoding = "Windows-1250")
@@ -67,6 +68,21 @@
          tabela_EU_stevilo_umrlih_prometne_nesrece<-read.csv2("podatki/EU_stevilo_umrlih_prometne_nesrece.csv",na.strings=":",stringsAsFactors = FALSE, 
                                                               fileEncoding = "windows-1250")
 
+         Leto<-tabela_Cestni_javni_linijski_prevoz_medkrajevni_in_mednarodni_SLO$Leto
+         Število.v.tisočih<-tabela_Cestni_javni_linijski_prevoz_medkrajevni_in_mednarodni_SLO$Potniki.v.1000
+         
+         Vozaci<-ggplot(tabela_Cestni_javni_linijski_prevoz_medkrajevni_in_mednarodni_SLO)+
+           aes(x=Leto,y=Število.v.tisočih)+
+           geom_line(colour="red")+
+           ggtitle("Vozači v javnem linijskem prevozu(medkrajevni in mednarodni) ")+
+           theme(plot.title = element_text(lineheight=.8, face="bold"))
+         
+         Vozaci
+         
+         
+         
+         
+         
  #html
 
          
@@ -190,26 +206,24 @@
          
 
          graf_Mazda<-ggplot(Mazda_prodaja, aes(x=Mesec, y=Povprečno, group=1)) + geom_line(colour="red")+
-                               ggtitle("Povprečna prodaja avtomobilov znamke Mazda(2012-2015)
-                                       v tisočih po mesecih")+
+                               ggtitle("Povprečna prodaja avtomobilov 
+                              znamke Mazda(2012-2015) v tisočih po mesecih")+
                                theme(plot.title = element_text(lineheight=.8, face="bold")) 
          
          
          graf_Ford<-ggplot(Ford_prodaja, aes(x=Mesec, y=Povprečno, group=1)) + geom_line(colour="blue")+
-                               ggtitle("Povprečna prodaja avtomobilov znamke Ford(2012-2015)
-                                       v tisočih po mesecih")+
+                               ggtitle("Povprečna prodaja avtomobilov
+                              znamke Ford(2012-2015) v tisočih po mesecih")+
                                theme(plot.title = element_text(lineheight=.8, face="bold"))
-         
-                                                   
-                                                    
+        
          Prodaja <- rbind(Audi_prodaja, Bmw_prodaja,Citroen_prodaja,Ford_prodaja,Fiat_prodaja,Mazda_prodaja,Peugeot_prodaja,Renault_prodaja,Opel_prodaja) 
          skupni_graf<-ggplot(Prodaja, aes(x=Mesec, y=Povprečno, group=Proizvajalec, color =
                                Proizvajalec)) + geom_line() +
-                               ggtitle("Povprečna prodaja avtomobilov po znamkah(2012-2015)
-                                       v Europi po mesecih v tisočih")+
-                              theme(plot.title = element_text(lineheight=.8, face="bold"))
+                               ggtitle("Povprečna prodaja avtomobilov po
+                                znamkah(2012-2015) v Europi po mesecih v tisočih")+
+                               theme(plot.title = element_text(lineheight=.8, face="bold"))
          
 
-         
 
+         
          
