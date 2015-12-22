@@ -209,7 +209,7 @@
                                        v Europi po mesecih v tisočih")+
                               theme(plot.title = element_text(lineheight=.8, face="bold"))
          
-         
+
          
 
          

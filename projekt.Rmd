@@ -32,13 +32,13 @@ source("uvoz/uvoz.r", encoding = "UTF-8")
 V tej fazi smo uvozil podatke v obliki CSV s statističnega urada Slovenije in Eurostata(saj bomo primerjali slovenske podatke z evropskimi) ter podatke o prodaji avtomobilov po znamkah v zadnjih 4 letih.V razpredelnicah, ki smo jih ustvarili, so podatki o najrazličnejših delih trga motornih vozil, pa tudi splošna statistika, kot je recimo število prometnih nesreč, količina prevoženih kilometrov na leto glede na skupno količino voznikov. V razpredelnicah je podano tudi število prvih registracij glede na vrsto vozila, starost vozil ter indeks cen motornih vozil od leta 2004 naprej. 
 
 Pa si oglejmo začetek razpredelnice o številu prometnih nesreč v Sloveniji:
-```{r}
-head(tabela_prometne_nesrece_SLO)
+```{r,echo=FALSE,message=FALSE}
+tabela_prometne_nesrece_SLO
 ```
 
 Pokažimo začetek razpredelnice prodaje avtomobilov znamke Audi 2012-2015:
-```{r,echo=FALSE,results='hide',message=FALSE}
-head(Audi_prodaja)
+```{r,echo=FALSE,message=FALSE}
+Audi_prodaja
 ```
 V tej tabeli so podatki treh tipov: 
 
