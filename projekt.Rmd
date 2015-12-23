@@ -34,9 +34,11 @@ source("uvoz/uvoz.r", encoding = "UTF-8")
 V tej fazi smo uvozil podatke v obliki CSV s statističnega urada Slovenije in Eurostata(saj bomo primerjali slovenske podatke z evropskimi) ter podatke o prodaji avtomobilov po znamkah v zadnjih 4 letih.V razpredelnicah, ki smo jih ustvarili, so podatki o najrazličnejših delih trga motornih vozil, pa tudi splošna statistika, kot je recimo število prometnih nesreč, količina prevoženih kilometrov na leto glede na skupno količino voznikov. V razpredelnicah je podano tudi število prvih registracij glede na vrsto vozila, starost vozil ter indeks cen motornih vozil od leta 2004 naprej. 
 
 Pa si oglejmo razpredelnico s podatki o vseh potnikih in potniških kilometrih v letih 2010-2014:
+
 ```{r,echo=FALSE,message=FALSE}
-tabela_Cestni_javni_linijski_prevoz_medkrajevni_in_mednarodni_SLO
+kable(tabela_Cestni_javni_linijski_prevoz_medkrajevni_in_mednarodni_SLO)
 ```
+
 Podatki v tej razpredelnici so samo tipa "integer". Prvi stolpec vsebuje leta po vrsti od leta 2010 do 2014. V drugem in tretjem stolpcu so numerični podatki in sicer o tem, koliko potnikov se je v posameznem letu prevozilo v Sloveniji, v cestnem javnem linijskem prevozu, ki vključuje tako medkrajevni kot mednarodni prevoz, ter o tem koliko kilometrov so vozači pri teh migracijah naredili(podatki so v milijonih kilometrov).
 
 Če te podatke predstavimo grafično, vidimo drastičen upad vozačev v letu 2012 in vzrok za to bi bilo dobro najti v naslednjih fazah.
@@ -49,8 +51,9 @@ Vozaci
 
 Pokažimo še razpredelnico prodaje avtomobilov znamke Bmw v letih 2012-2015:
 ```{r,echo=FALSE,message=FALSE}
-Bmw_prodaja
+kable(Bmw_prodaja)
 ```
+
 V tej tabeli so podatki treh tipov: 
 
 * nizi,
