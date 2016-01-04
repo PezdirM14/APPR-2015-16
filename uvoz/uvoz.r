@@ -61,7 +61,13 @@
          
          tabela_EU_prevozeni_km<-read.csv2("podatki/EU_prevozeni_km.csv",na.strings=":",stringsAsFactors = FALSE, 
                                                   fileEncoding = "windows-1250")
-        
+         
+         names(tabela_EU_prevozeni_km)<-gsub("X","",names(tabela_EU_prevozeni_km))
+         tabela_EU_prevozeni_km<-melt(tabela_EU_prevozeni_km, na.rm=FALSE,"GEO.TIME")
+         names(tabela_EU_prevozeni_km)<-c("GEO.TIME","Leto","Prevozeni km")
+         
+         
+         
          tabela_EU_vozaci<-read.csv2("podatki/EU_vozaci.csv",na.strings=":",stringsAsFactors = FALSE, 
                                            fileEncoding = "windows-1250")
            
