@@ -31,7 +31,7 @@ source("uvoz/uvoz.r", encoding = "UTF-8")
 
 ## Csv podatki
 
-V tej fazi smo uvozil podatke v obliki CSV s statističnega urada Slovenije in Eurostata(saj bomo primerjali slovenske podatke z evropskimi) ter podatke o prodaji avtomobilov po znamkah v zadnjih 4 letih.V razpredelnicah, ki smo jih ustvarili, so podatki o najrazličnejših delih trga motornih vozil, pa tudi splošna statistika, kot je recimo število prometnih nesreč, količina prevoženih kilometrov na leto glede na skupno količino voznikov. V razpredelnicah je podano tudi število prvih registracij glede na vrsto vozila, starost vozil ter indeks cen motornih vozil od leta 2004 naprej.
+V tej fazi smo uvozil podatke v obliki CSV s statističnega urada Slovenije in Eurostata(saj bomo primerjali slovenske podatke z evropskimi) ter podatke o prodaji avtomobilov po znamkah v zadnjih 4 letih.V razpredelnicah, ki smo jih ustvarili, so podatki o najrazličnejših delih trga motornih vozil, pa tudi splošna statistika, kot je recimo število prometnih nesreč, količina prevoženih kilometrov na leto glede na skupno količino voznikov. V razpredelnicah je podano tudi število prvih registracij glede na vrsto vozila, starost vozil ter indeks cen motornih vozil od leta 2004 naprej. Podatkov je veliko, vendar pa najverjetneje ne bo uporabljen ves obseg podatkov, to se bo določilo v prihodnosti, ko bomo podrobneje pogledali analizo pridobljenih podatkov.
 
 
 Pa si oglejmo razpredelnico s podatki o vseh potnikih in potniških kilometrih v letih 2010-2014:
@@ -118,13 +118,7 @@ V tabeli tabela_vozila_na_gorivo_SLO so podatki tipa character, logical, factor 
 * Leto,
 * Količina.
 
-Tabela Prodaja vsebuje združene vse podatke, ki sem jih našel o prodaji posamezne znamke v Evropi po letih ter mesecih. Podatki v tej tabeli so tipa numeric, ordered in factor. Tabela ima 432 vrstic in naslednje spremenljivke:
 
-* Mesec,
-* Povprečno,
-* Proizvajalec,
-* Leto,
-* Količina prodanih vozil.
 
 \pagebreak
 
@@ -136,7 +130,7 @@ Vozaci
 
 ## HTML podatki
 
-Pokažimo še razpredelnico prodaje avtomobilov znamke Bmw v letih 2012-2015:
+Pokažimo razpredelnico prodaje avtomobilov znamke Bmw v letih 2012-2015:
 ```{r,echo=FALSE,message=FALSE}
 kable(Bmw_prodaja)
 ```
@@ -153,6 +147,16 @@ V prvem stolpcu tabele so po vrsti navedeni meseci v leti, v naslednjih treh pa 
 
 Ti podatki so pridobljeni iz html strani. Problem, ki smo ga imeli je bil ta, da so bili prvotni podatki tipa "character", kar je povzročalo probleme pri računanju povprečji. To težavo smo odpravili s funkcijo "as.numeric()". Pri tem smo morali stolpec mesec spremeniti v urejen faktor mesec, kar smo uporabili pri risanju grafov.
 Podatke smo zbrali še za 8 ostalih znamk in jih uredili na podoben način.
+
+Tabela Prodaja vsebuje združene vse podatke, ki smo jih pridobili o prodaji posamezne znamke v Evropi, po letih ter mesecih. Podatki v tej tabeli so tipa numeric, ordered in factor. Tabela ima 432 vrstic in naslednje spremenljivke:
+
+* Mesec,
+* Povprečno,
+* Proizvajalec,
+* Leto,
+* Količina prodanih vozil.
+
+
 Naslednji graf predstavlja prodajo avtomobilov,znamke z najvišjo povprečno prodajo po mesecih v zadnjih 4. letih:
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
