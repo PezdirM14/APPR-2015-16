@@ -29,14 +29,24 @@
   
          tabela_registracije_SLO<-read.csv2("podatki/registracije.csv",na.strings = "-",stringsAsFactors = FALSE,
                                   fileEncoding = "Windows-1250",col.names = c("Leto","2004", "2005","2006","2007","2008","2009","2010","2011","2012","2013","2014"))
-
+         names(tabela_registracije_SLO)<-gsub("X","",names(tabela_registracije_SLO))
+         tabela_registracije_SLO<-melt(tabela_registracije_SLO, na.rm=FALSE,"Leto")
+         names(tabela_registracije_SLO)<-c("","Leto","Stevilo")
+         
+         
          tabela_indeks_cen_mot_voz_SLO<-read.csv2("podatki/indeks_cen_mot_voz_SLO.csv",skip=1,na.strings="-",stringsAsFactors = FALSE,
                                   fileEncoding = "Windows-1250",col.names = c("","Leto in mesec","Tekoči mesec na isti mesec prejšnjega leta"))
         
          tabela_prometne_nesrece_SLO<-tabela_prometne_nesrece_SLO<-read.csv2("podatki/prometne_nesrece_SLO.csv",na.strings="-",stringsAsFactors = FALSE,
-                                  fileEncoding = "Windows-1250",col.names =c("Leto","2004", "2005","2006","2007","2008","2009","2010","2011","2012","2013","2014"))
-
+                                  fileEncoding = "Windows-1250")
+         names(tabela_prometne_nesrece_SLO)<-gsub("X","",names(tabela_prometne_nesrece_SLO))
+         tabela_prometne_nesrece_SLO<-melt(tabela_prometne_nesrece_SLO, na.rm=FALSE,"")
+         names(tabela_prometne_nesrece_SLO)<-c("","Leto","Kolicina")
+         
+         
+        
          tabela_dolzina_cest_SLO<-read.csv2("podatki/dolzina_cest_SLO.csv",na.strings="-",stringsAsFactors = FALSE,fileEncoding = "Windows-1250")
+         
          
          tabela_Cestni_javni_linijski_prevoz_medkrajevni_in_mednarodni_SLO<-read.csv2("podatki/Cestni_javni_linijski_prevoz_medkrajevni_in_mednarodni.csv",
                                                                                   na.strings="-",stringsAsFactors = FALSE, fileEncoding = "Windows-1250",
@@ -47,33 +57,60 @@
          
          tabela_vozila_na_gorivo_SLO<-read.csv2("podatki/vozila_na_gorivo.csv",na.strings="",stringsAsFactors = FALSE,
                                             fileEncoding = "Windows-1250")
+         names(tabela_vozila_na_gorivo_SLO)<-gsub("X","",names(tabela_vozila_na_gorivo_SLO))
+         tabela_vozila_na_gorivo_SLO<-melt(tabela_vozila_na_gorivo_SLO, na.rm=FALSE,c("",".1",".2"))
+         names(tabela_vozila_na_gorivo_SLO)<-c("Tip vozila","Gorivo","Dan","Leto","Kolicina")
+         
+         
          
          tabela_starost_vozil_SLO<-read.csv2("podatki/starost_vozil_SLO.csv",na.strings="",stringsAsFactors = FALSE,
                                              fileEncoding = "windows-1250")
+         names(tabela_starost_vozil_SLO)<-gsub("X","",names(tabela_starost_vozil_SLO))
+         tabela_starost_vozil_SLO<-melt(tabela_starost_vozil_SLO, na.rm=FALSE,c("",".1"))
+         names(tabela_starost_vozil_SLO)<-c("Tip vozila","Starost","Leto","Kolicina")
          
 #Podatki za Eu
          
          tabela_EU_registracije_avtomobili<-read.csv2("podatki/EU_registracije.csv",na.strings=":",stringsAsFactors = FALSE, 
                                            fileEncoding = "windows-1250")
          
+         
+         names(tabela_EU_registracije_avtomobili)<-gsub("X","",names(tabela_EU_registracije_avtomobili))
+         tabela_EU_registracije_avtomobili<-melt(tabela_EU_registracije_avtomobili, na.rm=FALSE,"GEO.TIME")
+         names(tabela_EU_registracije_avtomobili)<-c("Drzava","Leto","Stevilo registracij")
+         
+         
          tabela_EU_registracije_ostalo<-read.csv2("podatki/EU_registracije_ostalo.csv",na.strings=":",stringsAsFactors = FALSE, 
                                                       fileEncoding = "windows-1250")
+         names(tabela_EU_registracije_ostalo)<-gsub("X","",names(tabela_EU_registracije_ostalo))
+         tabela_EU_registracije_ostalo<-melt(tabela_EU_registracije_ostalo, na.rm=FALSE,"GEO.TIME")
+         names(tabela_EU_registracije_ostalo)<-c("Drzava","Leto","Registracije ostalih vozil")
+        
          
          tabela_EU_prevozeni_km<-read.csv2("podatki/EU_prevozeni_km.csv",na.strings=":",stringsAsFactors = FALSE, 
                                                   fileEncoding = "windows-1250")
-         
          names(tabela_EU_prevozeni_km)<-gsub("X","",names(tabela_EU_prevozeni_km))
          tabela_EU_prevozeni_km<-melt(tabela_EU_prevozeni_km, na.rm=FALSE,"GEO.TIME")
-         names(tabela_EU_prevozeni_km)<-c("GEO.TIME","Leto","Prevozeni km")
+         names(tabela_EU_prevozeni_km)<-c("Drzava","Leto","Prevozeni km")
          
          
          
          tabela_EU_vozaci<-read.csv2("podatki/EU_vozaci.csv",na.strings=":",stringsAsFactors = FALSE, 
                                            fileEncoding = "windows-1250")
+         names(tabela_EU_vozaci)<-gsub("X","",names(tabela_EU_vozaci))
+         tabela_EU_vozaci<-melt(tabela_EU_vozaci, na.rm=FALSE,"GEO.TIME")
+         names(tabela_EU_vozaci)<-c("Drzava","Leto","Stevilo vozacev")
+         tabela_EU_vozaci<-tabela_EU_vozaci[ !tabela_EU_vozaci$Drzava %in% c(""),]
+         
            
          tabela_EU_stevilo_umrlih_prometne_nesrece<-read.csv2("podatki/EU_stevilo_umrlih_prometne_nesrece.csv",na.strings=":",stringsAsFactors = FALSE, 
                                                               fileEncoding = "windows-1250")
-
+         names(tabela_EU_stevilo_umrlih_prometne_nesrece)<-gsub("X","",names(tabela_EU_stevilo_umrlih_prometne_nesrece))
+         tabela_EU_stevilo_umrlih_prometne_nesrece<-melt(tabela_EU_stevilo_umrlih_prometne_nesrece, na.rm=FALSE,"geo.time")
+         names(tabela_EU_stevilo_umrlih_prometne_nesrece)<-c("Drzava","Leto","Stevilo umrlih")
+         tabela_EU_stevilo_umrlih_prometne_nesrece<-tabela_EU_stevilo_umrlih_prometne_nesrece[ !tabela_EU_stevilo_umrlih_prometne_nesrece$Drzava %in% c(""),]
+         
+         
          Leto<-tabela_Cestni_javni_linijski_prevoz_medkrajevni_in_mednarodni_SLO$Leto
          Število.v.tisočih<-tabela_Cestni_javni_linijski_prevoz_medkrajevni_in_mednarodni_SLO$Potniki.v.1000
          
@@ -83,7 +120,7 @@
            ggtitle("Vozači v javnem linijskem prevozu(medkrajevni in mednarodni) ")+
            theme(plot.title = element_text(lineheight=.8, face="bold"))
          
-         Vozaci
+
          
          
          
@@ -104,7 +141,7 @@
          Audi_prodaja$Povprečno <- apply(Audi_prodaja[-1], 1, mean, na.rm = TRUE)
          Audi_prodaja$Povprečno<-round(Audi_prodaja$Povprečno,3)
          Audi_prodaja$Proizvajalec <- "Audi"
-         
+
          
          url2<-'http://left-lane.com/european-car-sales-data/bmw/'
          stran2<-html_session(url2) %>% read_html(encoding = "Windows-1250")
@@ -214,7 +251,7 @@
          graf_Mazda<-ggplot(Mazda_prodaja, aes(x=Mesec, y=Povprečno, group=1)) + geom_line(colour="red")+
                                ggtitle("Povprečna prodaja avtomobilov\nznamke Mazda(2012-2015) v tisočih po mesecih")+
                                theme(plot.title = element_text(lineheight=.8, face="bold"),axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) 
-         graf_Mazda
+  
          
          graf_Ford<-ggplot(Ford_prodaja, aes(x=Mesec, y=Povprečno, group=1)) + geom_line(colour="blue")+
                                ggtitle("Povprečna prodaja avtomobilov\nznamke Ford(2012-2015) v tisočih po mesecih")+
@@ -226,7 +263,8 @@
                                ggtitle("Povprečna prodaja avtomobilov po\nznamkah(2012-2015) v Europi po mesecih v tisočih")+
                                theme(plot.title = element_text(lineheight=.8, face="bold"),axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
          
-
-
+         Prodaja<-melt(Prodaja,c("Mesec","Povprečno","Proizvajalec"))
+         names(Prodaja)<-c("Mesec","Povprečno","Proizvajalec","Leto","Kolicina prodanih vozil")
+         
          
          
