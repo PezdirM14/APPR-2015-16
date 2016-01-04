@@ -31,7 +31,8 @@ source("uvoz/uvoz.r", encoding = "UTF-8")
 
 ## Csv podatki
 
-V tej fazi smo uvozil podatke v obliki CSV s statističnega urada Slovenije in Eurostata(saj bomo primerjali slovenske podatke z evropskimi) ter podatke o prodaji avtomobilov po znamkah v zadnjih 4 letih.V razpredelnicah, ki smo jih ustvarili, so podatki o najrazličnejših delih trga motornih vozil, pa tudi splošna statistika, kot je recimo število prometnih nesreč, količina prevoženih kilometrov na leto glede na skupno količino voznikov. V razpredelnicah je podano tudi število prvih registracij glede na vrsto vozila, starost vozil ter indeks cen motornih vozil od leta 2004 naprej. 
+V tej fazi smo uvozil podatke v obliki CSV s statističnega urada Slovenije in Eurostata(saj bomo primerjali slovenske podatke z evropskimi) ter podatke o prodaji avtomobilov po znamkah v zadnjih 4 letih.V razpredelnicah, ki smo jih ustvarili, so podatki o najrazličnejših delih trga motornih vozil, pa tudi splošna statistika, kot je recimo število prometnih nesreč, količina prevoženih kilometrov na leto glede na skupno količino voznikov. V razpredelnicah je podano tudi število prvih registracij glede na vrsto vozila, starost vozil ter indeks cen motornih vozil od leta 2004 naprej.
+
 
 Pa si oglejmo razpredelnico s podatki o vseh potnikih in potniških kilometrih v letih 2010-2014:
 
@@ -39,9 +40,95 @@ Pa si oglejmo razpredelnico s podatki o vseh potnikih in potniških kilometrih v
 kable(tabela_Cestni_javni_linijski_prevoz_medkrajevni_in_mednarodni_SLO)
 ```
 
-Podatki v tej razpredelnici so samo tipa "integer". Prvi stolpec vsebuje leta po vrsti od leta 2010 do 2014. V drugem in tretjem stolpcu so numerični podatki in sicer o tem, koliko potnikov se je v posameznem letu prevozilo v Sloveniji, v cestnem javnem linijskem prevozu, ki vključuje tako medkrajevni kot mednarodni prevoz, ter o tem koliko kilometrov so vozači pri teh migracijah naredili(podatki so v milijonih kilometrov).
+Podatki v tej razpredelnici so samo tipa integer. Število vrstic je 5 in ima naslednje spremenljivke:
 
-Če te podatke predstavimo grafično, vidimo drastičen upad vozačev v letu 2012 in vzrok za to bi bilo dobro najti v naslednjih fazah.
+* V prvem stolpcu Leto so leta po vrsti od leta 2010 do 2014,
+* V stolpcu Potniki v 1000. so numerični podatki in sicer o tem, koliko potnikov se je v posameznem letu prevozilo v Sloveniji, v cestnem javnem linijskem prevozu, ki vključuje tako medkrajevni kot mednarodni prevoz,
+* v tretjem stolpcu Potniški kilometri v mio. so podatki prevoženih kilometrih vozačev.
+
+V tabeli tabela_dolzina_cest_SLO so podatki tipa integer ter character. Število vrstic je 10. Spremenljivke so:
+
+* Leto,
+* Javne ceste,
+* Avtoceste AC.
+
+\pagebreak
+
+V tabeli tabela_EU_prevozeni_km so podatki tipa character,logical, factor.Število vrstic je 288. Spremenljivke so:
+
+* Država,
+* Leto,
+* Prevoženi kilometri.
+
+V tabeli tabela_EU_registracije_avtomobili so podatki tipa character, logical, factor. Število vrstic je 340 in spremenljivke so:
+
+* Država,
+* Leto,
+* Število registracij.
+
+V tabeli tabela_EU_stevilo_umrlih_prometne_nesrece so podatki tipa character, logical, factor ter integer. Število vrstic je 510. Spremenljivke so:
+
+* Država,
+* Leto,
+* Število umrlih.
+
+V tabeli tabela_EU_vozaci so podatki tipa character, logical in factor. Število vrstic je 320. Spremenljivke so:
+
+* Država,
+* Leto,
+* Število vozačev
+
+V tabeli tabela_indeks_cen_mot_voz_SLO so podatki tipa character. Število vrstic je 12. Spremenljivke so:
+
+* x,
+* Leto in mesec,
+* Tekoci mesec na isti mesec prejsnjega leta.
+
+
+V tabeli tabela_prometne_nesrece_SLO so podatki tipa factor ter integer. Število vrstic je 22. Spremenljivke so:
+
+* Leto,
+* Količina.
+
+V tabeli tabela_registracije_SLO so podatki tipa factor ter integer. Število vrstic je 22. Spremenljivke so:
+
+* Leto,
+* Število.
+
+\pagebreak
+
+V tabeli tabela_starost_vozil_SLO so podatki tipa character, logical, factor ter integer. Število vrstic je 264 Spremenljivke so:
+
+* Tip vozila,
+* Starost,
+* Leto,
+* Količina.
+
+V tabeli tabela_vozači_SLO so podatki tipa character ter integer. Število vrstic je 6. Spremenljivke so:
+
+* Vrsta prevoza,
+* Leto in mesec,
+* Število potnikov.
+
+V tabeli tabela_vozila_na_gorivo_SLO so podatki tipa character, logical, factor ter integer. Število vrstic je 210 Spremenljivke so:
+
+* Tip vozila,
+* Gorivo,
+* Dan,
+* Leto,
+* Količina.
+
+Tabela Prodaja vsebuje združene vse podatke, ki sem jih našel o prodaji posamezne znamke v Evropi po letih ter mesecih. Podatki v tej tabeli so tipa numeric, ordered in factor. Tabela ima 432 vrstic in naslednje spremenljivke:
+
+* Mesec,
+* Povprečno,
+* Proizvajalec,
+* Leto,
+* Količina prodanih vozil.
+
+\pagebreak
+
+Če prvo tabelo predstavimo grafično, vidimo drastičen upad vozačev v letu 2012 in vzrok za to bi bilo dobro najti v naslednjih fazah.
 
 ```{r,echo=FALSE,message=FALSE}
 Vozaci
@@ -53,6 +140,8 @@ Pokažimo še razpredelnico prodaje avtomobilov znamke Bmw v letih 2012-2015:
 ```{r,echo=FALSE,message=FALSE}
 kable(Bmw_prodaja)
 ```
+
+\pagebreak
 
 V tej tabeli so podatki treh tipov: 
 
