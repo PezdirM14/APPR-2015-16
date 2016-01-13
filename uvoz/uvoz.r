@@ -78,7 +78,9 @@
          names(tabela_EU_registracije_avtomobili)<-gsub("X","",names(tabela_EU_registracije_avtomobili))
          tabela_EU_registracije_avtomobili<-melt(tabela_EU_registracije_avtomobili, na.rm=FALSE,"GEO.TIME")
          names(tabela_EU_registracije_avtomobili)<-c("Drzava","Leto","Stevilo registracij")
-         
+         tabela_EU_registracije_avtomobili$`Stevilo registracij` <- gsub("\\.", "", tabela_EU_registracije_avtomobili$`Stevilo registracij`) %>% as.numeric()
+         tabela_EU_registracije_avtomobili$Drzava[grep("Germany",tabela_EU_registracije_avtomobili$Drzava)] <- "Germany"
+         tabela_EU_registracije_avtomobili$Drzava[grep("Former Yugoslav",tabela_EU_registracije_avtomobili$Drzava)] <- "Macedonia, FYR"
          
          tabela_EU_registracije_ostalo<-read.csv2("podatki/EU_registracije_ostalo.csv",na.strings=":",stringsAsFactors = FALSE, 
                                                       fileEncoding = "windows-1250")
