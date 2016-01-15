@@ -32,19 +32,22 @@ svet<-uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdat
 pred_krizo<-tabela_EU_registracije_avtomobili %>% filter(Leto == 2009)
 m <- match(svet$name_sort, pred_krizo$Drzava)
 svet$pred_krizo <- pred_krizo$`Stevilo registracij`[m]
+svet$po_krizi <- po_krizi$`Stevilo registracij`[n] 
 evropa<-pretvori.zemljevid(svet, svet$continent=="Europe")
 
 
 po_krizi<-tabela_EU_registracije_avtomobili %>% filter(Leto == 2011)
 n <- match(svet$name_sort, po_krizi$Drzava)
-svet$po_krizi <- po_krizi$`Stevilo registracij`[n] 
+
 
 
 pred<-ggplot()+geom_polygon(data=evropa, aes(x=long, y=lat, group= group,fill=pred_krizo),
-                      color= "grey") + xlim(-10,50) + ylim(34,72) 
+                      color= "grey") + xlim(-10,50) + ylim(34,72)+scale_fill_gradientn(colours=RColorBrewer::brewer.pal(n = 10, name = "Spectral"))
+
+
 
 po<-ggplot()+geom_polygon(data=evropa, aes(x=long, y=lat, group= group,fill=po_krizi),
-                          color= "grey") + xlim(-10,50) + ylim(34,72) 
+                          color= "grey") + xlim(-10,50) + ylim(34,72) +scale_fill_gradientn(colours=RColorBrewer::brewer.pal(n = 10, name = "Spectral"))
 
 
 
