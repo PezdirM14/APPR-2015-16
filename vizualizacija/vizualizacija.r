@@ -29,30 +29,20 @@ pretvori.zemljevid <- function(zemljevid,pogoj=TRUE) {
 svet<-uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_countries.zip",
                       "ne_110m_admin_0_countries")
 
-pred_krizo<-tabela_EU_registracije_avtomobili %>% filter(Leto == 2009)
-m <- match(svet$name_sort, pred_krizo$Drzava)
-svet$pred_krizo <- pred_krizo$`Stevilo registracij`[m]
-svet$po_krizi <- po_krizi$`Stevilo registracij`[n] 
+izbrano_leto<-tabela_EU_registracije_avtomobili %>% filter(Leto == 2013)
+m <- match(svet$name_sort, izbrano_leto$Drzava)
+svet$izbrano_leto <- pred_krizo$`Stevilo registracij`[m]
+
 evropa<-pretvori.zemljevid(svet, svet$continent=="Europe")
 
-
-po_krizi<-tabela_EU_registracije_avtomobili %>% filter(Leto == 2011)
-n <- match(svet$name_sort, po_krizi$Drzava)
-
-
-
-pred<-ggplot()+geom_polygon(data=evropa, aes(x=long, y=lat, group= group,fill=pred_krizo),
-                      color= "grey") + xlim(-10,50) + ylim(34,72)+scale_fill_gradientn(colours=RColorBrewer::brewer.pal(n = 10, name = "Spectral"))
+leto_2013<-ggplot()+geom_polygon(data=evropa, aes(x=long, y=lat, group= group,fill=izbrano_leto),
+                      color= "grey") + xlim(-10,50) + ylim(34,72)+scale_fill_gradientn(colours=RColorBrewer::brewer.pal(n = 11, name = "Spectral"))
 
 
 
-po<-ggplot()+geom_polygon(data=evropa, aes(x=long, y=lat, group= group,fill=po_krizi),
-                          color= "grey") + xlim(-10,50) + ylim(34,72) +scale_fill_gradientn(colours=RColorBrewer::brewer.pal(n = 10, name = "Spectral"))
-
-
-
-
-
+povezava<-ggplot("tabela_EU_registracije_avtomobili", aes(x=tabela_EU_registracije_avtomobili$Stevilo_registracij, y=tabela_EU_registracije_avtomobili$vozaci))+
+                                                            geom_smooth(method="lm")
+                                            
 
 
 

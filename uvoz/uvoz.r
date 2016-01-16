@@ -77,10 +77,11 @@
          
          names(tabela_EU_registracije_avtomobili)<-gsub("X","",names(tabela_EU_registracije_avtomobili))
          tabela_EU_registracije_avtomobili<-melt(tabela_EU_registracije_avtomobili, na.rm=FALSE,"GEO.TIME")
-         names(tabela_EU_registracije_avtomobili)<-c("Drzava","Leto","Stevilo registracij")
-         tabela_EU_registracije_avtomobili$`Stevilo registracij` <- gsub("\\.", "", tabela_EU_registracije_avtomobili$`Stevilo registracij`) %>% as.numeric()
+         names(tabela_EU_registracije_avtomobili)<-c("Drzava","Leto","Stevilo_registracij")
+         tabela_EU_registracije_avtomobili$`Stevilo_registracij` <- gsub("\\.", "", tabela_EU_registracije_avtomobili$`Stevilo_registracij`) %>% as.numeric()
          tabela_EU_registracije_avtomobili$Drzava[grep("Germany",tabela_EU_registracije_avtomobili$Drzava)] <- "Germany"
          tabela_EU_registracije_avtomobili$Drzava[grep("Former Yugoslav",tabela_EU_registracije_avtomobili$Drzava)] <- "Macedonia, FYR"
+         tabela_EU_registracije_avtomobili$vozaci<-tabela_EU_vozaci$`Stevilo vozacev`
          
          tabela_EU_registracije_ostalo<-read.csv2("podatki/EU_registracije_ostalo.csv",na.strings=":",stringsAsFactors = FALSE, 
                                                       fileEncoding = "windows-1250")
@@ -103,6 +104,10 @@
          tabela_EU_vozaci<-melt(tabela_EU_vozaci, na.rm=FALSE,"GEO.TIME")
          names(tabela_EU_vozaci)<-c("Drzava","Leto","Stevilo vozacev")
          tabela_EU_vozaci<-tabela_EU_vozaci[ !tabela_EU_vozaci$Drzava %in% c(""),]
+         tabela_EU_vozaci$`Stevilo vozacev` <- gsub("\\.", "", tabela_EU_vozaci$`Stevilo vozacev`) %>% as.numeric()
+         tabela_EU_vozaci$Drzava[grep("Germany",tabela_EU_vozaci$Drzava)] <- "Germany"
+         tabela_EU_vozaci$Drzava[grep("Former Yugoslav",tabela_EU_vozaci$Drzava)] <- "Macedonia, FYR"
+         
          
            
          tabela_EU_stevilo_umrlih_prometne_nesrece<-read.csv2("podatki/EU_stevilo_umrlih_prometne_nesrece.csv",na.strings=":",stringsAsFactors = FALSE, 
