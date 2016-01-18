@@ -31,7 +31,7 @@ svet<-uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdat
 
 izbrano_leto<-tabela_EU_registracije_avtomobili %>% filter(Leto == 2013)
 m <- match(svet$name_sort, izbrano_leto$Drzava)
-svet$izbrano_leto <- pred_krizo$`Stevilo registracij`[m]
+svet$izbrano_leto <- izbrano_leto$`Stevilo registracij`[m]
 
 evropa<-pretvori.zemljevid(svet, svet$continent=="Europe")
 
@@ -40,10 +40,8 @@ leto_2013<-ggplot()+geom_polygon(data=evropa, aes(x=long, y=lat, group= group,fi
 
 
 
-povezava<-ggplot("tabela_EU_registracije_avtomobili", aes(x=tabela_EU_registracije_avtomobili$Stevilo_registracij, y=tabela_EU_registracije_avtomobili$vozaci))+
-                                                            geom_smooth(method="lm")
-                                            
-
+povezava<-ggplot(tabela_EU_registracije_avtomobili,aes(x=Stevilo_registracij, y=vozaci)) +
+                                          geom_point(na.rm = TRUE) + geom_smooth(method="lm", na.rm = TRUE)
 
 
 
