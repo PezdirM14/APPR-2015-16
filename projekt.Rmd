@@ -159,7 +159,15 @@ Tabela Prodaja vsebuje združene vse podatke, ki smo jih pridobili o prodaji pos
 
 # Tretja faza-vizualizacija
 
-``{r vizualizacija, echo=FALSE,results='hide',message='FALSE'}
+Po drugi fazi smo podatke, ki še niso bili v obliki 'tidy data' preuredili v tako obliko. Primer preurejene tabele v zahtevano obliko, je na primer naslednja tabela:
+
+```{r,echo=FALSE,message=FALSE}
+kable(head(tabela_EU_stevilo_umrlih_prometne_nesrece))
+```
+
+Spremenljivke tu so država, leto in število umrlih. Podobno smo storili tudi v nekaterih drugih tabelah, navedenih zgoraj, v drugi fazi.
+
+```{r vizualizacija, echo=FALSE,results='hide',message='FALSE'}
 source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
 ```
 
@@ -191,5 +199,25 @@ Preverjali smo tudi gostoto prodanih avtomobilov glede na posamezno evropsko dr�
 
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
-leto_2013
+leto_2009
+```
+
+Med državami izrazito prevladuje Nemčija, kot država z največ registracijami, sledijo ji Francija, Italija in Velika Britanija. V repu so skandinavske države in Balkan. Domnevamo, da je tako razmerje v prodaji, zaradi majhnosti balkanskih držav, pa tudi zaradi odročnosti pokrajin v skandinavskih državah. 
+
+\pagebreak
+
+Ogledali smo si tudi prilagajanje in pri tem opazovali glavno spremenljivko, število novih registracij avtomobilov na evropskem trgu, v razmerju z dvema spremenljivkama-število vozačev in število umrlih v prometnih nesrečah. 
+
+Ko smo primerjali nove registracije s številom vozačev ni bilo posebne korelacije.
+
+```{r,echo=FALSE,results='hide',message=FALSE}
+povezava_avtomobili_vozaci
+```
+
+\pagebreak
+
+Pri opazovanju števila prodanih avtomobilov s številom smrtnih žrtev, pa je bilo opaziti šibko povezavo, kar je dokaj logično, saj bi lahko razmišljali, da več kot je avtomobilov, več je prometnih nesreč.
+
+```{r,echo=FALSE,results='hide',message=FALSE}
+povezava_smrti_avtomobili
 ```

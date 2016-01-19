@@ -83,16 +83,7 @@
          tabela_EU_vozaci$Drzava[grep("Former Yugoslav",tabela_EU_vozaci$Drzava)] <- "Macedonia, FYR"
          
          
-         tabela_EU_registracije_avtomobili<-read.csv2("podatki/EU_registracije.csv",na.strings=":",stringsAsFactors = FALSE, 
-                                           fileEncoding = "windows-1250")
-         names(tabela_EU_registracije_avtomobili)<-gsub("X","",names(tabela_EU_registracije_avtomobili))
-         tabela_EU_registracije_avtomobili<-melt(tabela_EU_registracije_avtomobili, na.rm=FALSE,"GEO.TIME")
-         names(tabela_EU_registracije_avtomobili)<-c("Drzava","Leto","Stevilo_registracij")
-         tabela_EU_registracije_avtomobili$`Stevilo_registracij` <- gsub("\\.", "", tabela_EU_registracije_avtomobili$`Stevilo_registracij`) %>% as.numeric()
-         tabela_EU_registracije_avtomobili$Drzava[grep("Germany",tabela_EU_registracije_avtomobili$Drzava)] <- "Germany"
-         tabela_EU_registracije_avtomobili$Drzava[grep("Former Yugoslav",tabela_EU_registracije_avtomobili$Drzava)] <- "Macedonia, FYR"
-         tabela_EU_registracije_avtomobili$vozaci<-tabela_EU_vozaci$`Stevilo vozacev`
-         tabela_EU_registracije_avtomobili$nesrece<-tabela_EU_stevilo_umrlih_prometne_nesrece$`Stevilo_umrlih`
+         
          
          tabela_EU_registracije_ostalo<-read.csv2("podatki/EU_registracije_ostalo.csv",na.strings=":",stringsAsFactors = FALSE, 
                                                       fileEncoding = "windows-1250")
@@ -123,6 +114,21 @@
          tabela_EU_stevilo_umrlih_prometne_nesrece<-tabela_EU_stevilo_umrlih_prometne_nesrece[!tabela_EU_stevilo_umrlih_prometne_nesrece$Drzava %in% c("EU (28 countries)","EU (27 countries)"),]
          tabela_EU_stevilo_umrlih_prometne_nesrece$Drzava[grep("Germany",tabela_EU_stevilo_umrlih_prometne_nesrece$Drzava)] <- "Germany"
         
+         
+         tabela_EU_registracije_avtomobili<-read.csv2("podatki/EU_registracije.csv",na.strings=":",stringsAsFactors = FALSE, 
+                                                      fileEncoding = "windows-1250")
+         names(tabela_EU_registracije_avtomobili)<-gsub("X","",names(tabela_EU_registracije_avtomobili))
+         tabela_EU_registracije_avtomobili<-melt(tabela_EU_registracije_avtomobili, na.rm=FALSE,"GEO.TIME")
+         names(tabela_EU_registracije_avtomobili)<-c("Drzava","Leto","Stevilo_registracij")
+         tabela_EU_registracije_avtomobili$`Stevilo_registracij` <- gsub("\\.", "", tabela_EU_registracije_avtomobili$`Stevilo_registracij`) %>% as.numeric()
+         tabela_EU_registracije_avtomobili$Drzava[grep("Germany",tabela_EU_registracije_avtomobili$Drzava)] <- "Germany"
+         tabela_EU_registracije_avtomobili$Drzava[grep("Former Yugoslav",tabela_EU_registracije_avtomobili$Drzava)] <- "Macedonia, FYR"
+         tabela_zemljevid<-tabela_EU_registracije_avtomobili
+         tabela_EU_registracije_avtomobili$vozaci<-tabela_EU_vozaci$`Stevilo vozacev`
+         tabela_EU_registracije_avtomobili$nesrece<-tabela_EU_stevilo_umrlih_prometne_nesrece$`Stevilo_umrlih`
+         
+         
+         
          
          Leto<-tabela_Cestni_javni_linijski_prevoz_medkrajevni_in_mednarodni_SLO$Leto
          Število.v.tisočih<-tabela_Cestni_javni_linijski_prevoz_medkrajevni_in_mednarodni_SLO$Potniki.v.1000

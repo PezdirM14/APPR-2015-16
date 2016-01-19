@@ -29,13 +29,13 @@ pretvori.zemljevid <- function(zemljevid,pogoj=TRUE) {
 svet<-uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_countries.zip",
                       "ne_110m_admin_0_countries")
 
-izbrano_leto<-tabela_EU_registracije_avtomobili %>% filter(Leto == 2013)
+izbrano_leto<-tabela_EU_registracije_avtomobili %>% filter(Leto == 2009)
 m <- match(svet$name_sort, izbrano_leto$Drzava)
-svet$izbrano_leto <- izbrano_leto$`Stevilo registracij`[m]
+svet$izbrano_leto <- izbrano_leto$`Stevilo_registracij`[m]
 
 evropa<-pretvori.zemljevid(svet, svet$continent=="Europe")
 
-leto_2013<-ggplot()+geom_polygon(data=evropa, aes(x=long, y=lat, group= group,fill=izbrano_leto),
+leto_2009<-ggplot()+geom_polygon(data=evropa, aes(x=long, y=lat, group= group,fill=izbrano_leto),
                       color= "grey") + xlim(-10,50) + ylim(34,72)+scale_fill_gradientn(colours=RColorBrewer::brewer.pal(n = 11, name = "Spectral"))
 
 
