@@ -40,11 +40,14 @@ leto_2013<-ggplot()+geom_polygon(data=evropa, aes(x=long, y=lat, group= group,fi
 
 
 
-povezava<-ggplot(tabela_EU_registracije_avtomobili,aes(x=Stevilo_registracij, y=vozaci)) +
+povezava_avtomobili_vozaci<-ggplot(tabela_EU_registracije_avtomobili,aes(x=Stevilo_registracij, y=vozaci)) +
                                           geom_point(na.rm = TRUE) + geom_smooth(method="lm", na.rm = TRUE)
 
 
+povezava_smrti_avtomobili<-ggplot(tabela_EU_registracije_avtomobili,aes(x=Stevilo_registracij, y=nesrece))+
+                                          geom_point(na.rm = TRUE) + geom_smooth(method="lm", na.rm = TRUE)
 
+ 
 
 
 

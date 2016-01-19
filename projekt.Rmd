@@ -157,6 +157,12 @@ Tabela Prodaja vsebuje združene vse podatke, ki smo jih pridobili o prodaji pos
 * Količina prodanih vozil.
 
 
+# Tretja faza-vizualizacija
+
+``{r vizualizacija, echo=FALSE,results='hide',message='FALSE'}
+source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
+```
+
 Naslednji graf predstavlja prodajo avtomobilov,znamke z najvišjo povprečno prodajo po mesecih v zadnjih 4. letih:
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
@@ -175,4 +181,15 @@ Razlika med tema dvema znamkama ni tako očitna, ko pa podatke predstavimo na sk
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 skupni_graf
+```
+
+Tu smo ugotovili, da je v Evropi prodanih največ avtomobilov znamke Ford, najmanj pa znamke Mazda od izbranih znamk avtomobilov.
+
+\pagebreak
+
+Preverjali smo tudi gostoto prodanih avtomobilov glede na posamezno evropsko državo in dobili naslednji zemljevid, na katerem je z barvami prikazana prodaja avtomobilov v letu 2013.
+
+
+```{r,echo=FALSE,results='hide',message=FALSE}
+leto_2013
 ```
