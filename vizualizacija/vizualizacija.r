@@ -45,7 +45,7 @@ povezava_avtomobili_vozaci<-ggplot(tabela_EU_registracije_avtomobili,aes(x=Stevi
 
 
 povezava_smrti_avtomobili<-ggplot(tabela_EU_registracije_avtomobili,aes(x=Stevilo_registracij, y=nesrece))+
-                                          geom_point(na.rm = TRUE) + geom_smooth(method="lm", na.rm = TRUE)
+                                          geom_point(na.rm = TRUE) + geom_smooth(method="lm",formula= y~x+I(x^2)+I(x^3)+I(x^4) , na.rm = TRUE)
 
  
 
