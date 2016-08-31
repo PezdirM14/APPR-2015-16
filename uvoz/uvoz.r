@@ -25,7 +25,7 @@
 #Podatki za Slovenijo
 
          tabela_vozači_SLO<-read.csv2("podatki/vozaci.csv", skip=1,na.strings = "-", stringsAsFactors = FALSE,
-                                  fileEncoding = "UTF-8", col.names = c("Vrsta prevoza","Leto in mesec", "Število potnikov"))
+                                  fileEncoding = "UTF-8", col.names = c("Vrsta prevoza","Leto", "Število potnikov"))
   
          tabela_registracije_SLO<-read.csv2("podatki/registracije.csv",na.strings = "-",stringsAsFactors = FALSE,
                                   fileEncoding = "Windows-1250",col.names = c("Leto","2004", "2005","2006","2007","2008","2009","2010","2011","2012","2013","2014"))
@@ -35,12 +35,13 @@
          
          
          tabela_indeks_cen_mot_voz_SLO<-read.csv2("podatki/indeks_cen_mot_voz_SLO.csv",skip=1,na.strings="-",stringsAsFactors = FALSE,
-                                  fileEncoding = "Windows-1250",col.names = c("","Leto in mesec","Tekoči mesec na isti mesec prejšnjega leta"))
-        
+                                  fileEncoding = "Windows-1250",col.names = c("","Leto","Tekoči mesec na isti mesec prejšnjega leta"))
+         names(tabela_indeks_cen_mot_voz_SLO)<-gsub("X","",names(tabela_indeks_cen_mot_voz_SLO))
+         
          tabela_prometne_nesrece_SLO<-tabela_prometne_nesrece_SLO<-read.csv2("podatki/prometne_nesrece_SLO.csv",na.strings="-",stringsAsFactors = FALSE,
-                                  fileEncoding = "Windows-1250")
+                                  fileEncoding = "Windows-1250",col.names =c("Leto","2004", "2005","2006","2007","2008","2009","2010","2011","2012","2013","2014"))
          names(tabela_prometne_nesrece_SLO)<-gsub("X","",names(tabela_prometne_nesrece_SLO))
-         tabela_prometne_nesrece_SLO<-melt(tabela_prometne_nesrece_SLO, na.rm=FALSE,"")
+         tabela_prometne_nesrece_SLO<-melt(tabela_prometne_nesrece_SLO, na.rm=FALSE,"Leto")
          names(tabela_prometne_nesrece_SLO)<-c("","Leto","Kolicina")
          
          
@@ -54,20 +55,21 @@
          
          tabela_prve_reg_vrsta_vozila_SLO_vsa<-read.csv2("podatki/prve_reg_vrsta_vozila_SLO.csv",na.strings="-",stringsAsFactors = FALSE,
                                                      fileEncoding = "Windows-1250")
+         names(tabela_prve_reg_vrsta_vozila_SLO_vsa)<-gsub("X","", names(tabela_prve_reg_vrsta_vozila_SLO_vsa))
          
          tabela_vozila_na_gorivo_SLO<-read.csv2("podatki/vozila_na_gorivo.csv",na.strings="",stringsAsFactors = FALSE,
-                                            fileEncoding = "Windows-1250")
+                                            fileEncoding = "Windows-1250",col.names = c("Tip_vozila","Gorivo","Dan","2004", "2005","2006","2007","2008","2009","2010","2011","2012","2013"))
          names(tabela_vozila_na_gorivo_SLO)<-gsub("X","",names(tabela_vozila_na_gorivo_SLO))
-         tabela_vozila_na_gorivo_SLO<-melt(tabela_vozila_na_gorivo_SLO, na.rm=FALSE,c("",".1",".2"))
+         tabela_vozila_na_gorivo_SLO<-melt(tabela_vozila_na_gorivo_SLO, na.rm=FALSE,c("Tip_vozila","Gorivo","Dan"))
          names(tabela_vozila_na_gorivo_SLO)<-c("Tip vozila","Gorivo","Dan","Leto","Kolicina")
          
          
          
          tabela_starost_vozil_SLO<-read.csv2("podatki/starost_vozil_SLO.csv",na.strings="",stringsAsFactors = FALSE,
-                                             fileEncoding = "windows-1250")
+                                             fileEncoding = "windows-1250",col.names = c("Tip_vozila","Starost","2004", "2005","2006","2007","2008","2009","2010","2011","2012","2013","2014"))
          names(tabela_starost_vozil_SLO)<-gsub("X","",names(tabela_starost_vozil_SLO))
-         tabela_starost_vozil_SLO<-melt(tabela_starost_vozil_SLO, na.rm=FALSE,c("",".1"))
-         names(tabela_starost_vozil_SLO)<-c("Tip vozila","Starost","Leto","Kolicina")
+         tabela_starost_vozil_SLO<-melt(tabela_starost_vozil_SLO, na.rm=FALSE,c("Tip_vozila","Starost"))
+         names(tabela_starost_vozil_SLO)<-c("Tip_vozila","Starost","Leto","Kolicina")
          
 #Podatki za Eu
          
@@ -282,8 +284,8 @@
                                ggtitle("Povprečna prodaja avtomobilov po\nznamkah(2012-2015) v Europi po mesecih v tisočih")+
                                theme(plot.title = element_text(lineheight=.8, face="bold"),axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
          
-         Prodaja<-melt(Prodaja,c("Mesec","Povprečno","Proizvajalec"))
-         names(Prodaja)<-c("Mesec","Povprečno","Proizvajalec","Leto","Kolicina prodanih vozil")
+         Prodaja<-melt(Prodaja, na.rm=FALSE , "Mesec")
+         names(Prodaja)<-c("Mesec","Leto", "Stevilo_prodanih_avtomobilov")
          
          
-         
+      
