@@ -3,8 +3,18 @@ library(shiny)
 if ("server.R" %in% dir()) {
   setwd("..")
 }
+source("lib/libraries.r", encoding = "UTF-8")
+
+source("uvoz/uvoz.r", encoding = "UTF-8")
+
+source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
+
 
 shinyServer( function(input,output){ 
+  output$graf<-renderPlot({
+    ggplot(filter(zdruzena,Leto==input$leto))+aes(x=Drzava,y=kolicnik_nevarnosti)+geom_point(colour="red")
+  })
+  
   }
 )
 

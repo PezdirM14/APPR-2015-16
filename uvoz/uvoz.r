@@ -315,7 +315,16 @@
          
          
          zdruzena$kolicnik_nevarnosti<-round(((as.numeric(zdruzena$Stevilo_umrlih)/as.numeric(zdruzena$Stevilo_prebivalcev)))*100000,2)
-        
+         
+         graf_nevarnosti<-ggplot(filter(zdruzena,Leto==2004))+aes(x=Drzava,y=kolicnik_nevarnosti)+geom_point(colour="red")
+         
+         
+         Vozaci<-ggplot(tabela_Cestni_javni_linijski_prevoz_medkrajevni_in_mednarodni_SLO)+
+           aes(x=Leto,y=Število.v.tisočih)+
+           geom_line(colour="red")+
+           ggtitle("Vozači v javnem linijskem prevozu(medkrajevni in mednarodni) ")+
+           theme(plot.title = element_text(lineheight=.8, face="bold"))
+         
          
            
          graf_Mazda<-ggplot(Mazda_prodaja, aes(x=Mesec, y=Povprečno, group=1)) + geom_line(colour="red")+

@@ -2,7 +2,11 @@ library(shiny)
 
 shinyUI(
   ui<-fluidPage(
-    titlePanel("shiny app")
+    titlePanel("Nevarnost cest evropskih držav"),
+    sliderInput(inputId= "leto",
+                label="Izberite leto",
+                value=2004, min=2004, max=2013),
+    plotOutput(outputId="graf")
 ))
 
 
