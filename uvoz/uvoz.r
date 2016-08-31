@@ -115,7 +115,8 @@
          tabela_EU_stevilo_umrlih_prometne_nesrece<-tabela_EU_stevilo_umrlih_prometne_nesrece[-c(1:162),]
          tabela_EU_stevilo_umrlih_prometne_nesrece<-tabela_EU_stevilo_umrlih_prometne_nesrece[!tabela_EU_stevilo_umrlih_prometne_nesrece$Drzava %in% c("EU (28 countries)","EU (27 countries)"),]
          tabela_EU_stevilo_umrlih_prometne_nesrece$Drzava[grep("Germany",tabela_EU_stevilo_umrlih_prometne_nesrece$Drzava)] <- "Germany"
-        
+         
+         
          
          tabela_EU_registracije_avtomobili<-read.csv2("podatki/EU_registracije.csv",na.strings=":",stringsAsFactors = FALSE, 
                                                       fileEncoding = "windows-1250")
@@ -268,7 +269,55 @@
          Opel_prodaja$Povprečno<-round(Opel_prodaja$Povprečno,3)
          Opel_prodaja$Proizvajalec <- "Opel"
          
-
+         
+         
+         url10<-'https://en.wikipedia.org/wiki/List_of_European_countries_by_population'
+         stran10<-html_session(url10) %>% read_html(encoding= "windows-1250")
+         Populacija_drzav<-stran10 %>% html_nodes(xpath=" //table") %>% .[[3]]%>% html_table(fill=TRUE)
+         Populacija_drzav<-Populacija_drzav[,-c(1,4,5,6,7,8,9,10)]
+         Populacija_drzav<-Populacija_drzav[-c(1,3,8,11,19,20,24,31,32,33,34,36,37,40,42,43,45,46,48,49,50,51,52,54,55,56,57,58,59,60),]
+         names(Populacija_drzav)<-c("Drzava","Stevilo_prebivalcev")
+         Populacija_drzav$Drzava[grep("France",Populacija_drzav$Drzava)] <-"France"
+         Populacija_drzav$Drzava[grep("Germany",Populacija_drzav$Drzava)] <- "Germany"
+         Populacija_drzav$Drzava[grep("United Kingdom",Populacija_drzav$Drzava)] <- "United Kingdom"
+         Populacija_drzav$Drzava[grep("Italy",Populacija_drzav$Drzava)] <- "Italy"
+         Populacija_drzav$Drzava[grep("Spain",Populacija_drzav$Drzava)] <- "Spain"
+         Populacija_drzav$Drzava[grep("Poland",Populacija_drzav$Drzava)] <- "Poland"
+         Populacija_drzav$Drzava[grep("Romania",Populacija_drzav$Drzava)] <- "Romania"
+         Populacija_drzav$Drzava[grep("Netherlands",Populacija_drzav$Drzava)] <- "Netherlands"
+         Populacija_drzav$Drzava[grep("Belgium",Populacija_drzav$Drzava)] <- "Belgium"
+         Populacija_drzav$Drzava[grep("Greece",Populacija_drzav$Drzava)] <- "Greece"
+         Populacija_drzav$Drzava[grep("Czech Republic",Populacija_drzav$Drzava)] <- "Czech Republic"
+         Populacija_drzav$Drzava[grep("Portugal",Populacija_drzav$Drzava)] <- "Portugal"
+         Populacija_drzav$Drzava[grep("Sweden",Populacija_drzav$Drzava)] <- "Sweden"
+         Populacija_drzav$Drzava[grep("Hungary",Populacija_drzav$Drzava)] <- "Hungary"
+         Populacija_drzav$Drzava[grep("Austria",Populacija_drzav$Drzava)] <- "Austria"
+         Populacija_drzav$Drzava[grep("Switzerland",Populacija_drzav$Drzava)] <- "Switzerland"
+         Populacija_drzav$Drzava[grep("Bulgaria",Populacija_drzav$Drzava)] <- "Bulgaria"
+         Populacija_drzav$Drzava[grep("Denmark",Populacija_drzav$Drzava)] <- "Denmark"
+         Populacija_drzav$Drzava[grep("Finland",Populacija_drzav$Drzava)] <- "Finland"
+         Populacija_drzav$Drzava[grep("Slovakia",Populacija_drzav$Drzava)] <- "Slovakia"
+         Populacija_drzav$Drzava[grep("Norway",Populacija_drzav$Drzava)] <- "Norway"
+         Populacija_drzav$Drzava[grep("Ireland",Populacija_drzav$Drzava)] <- "Ireland"
+         Populacija_drzav$Drzava[grep("Croatia",Populacija_drzav$Drzava)] <- "Croatia"
+         Populacija_drzav$Drzava[grep("Lithuania",Populacija_drzav$Drzava)] <- "Lithuania"
+         Populacija_drzav$Drzava[grep("Slovenia",Populacija_drzav$Drzava)] <- "Slovenia"
+         Populacija_drzav$Drzava[grep("Latvia",Populacija_drzav$Drzava)] <- "Latvia"
+         Populacija_drzav$Drzava[grep("Estonia",Populacija_drzav$Drzava)] <- "Estonia"
+         Populacija_drzav$Drzava[grep("Luxembourg",Populacija_drzav$Drzava)] <- "Luxembourg"
+         Populacija_drzav$Drzava[grep("Iceland",Populacija_drzav$Drzava)] <- "Iceland"
+         Populacija_drzav$Drzava[grep("Liechtenstein",Populacija_drzav$Drzava)] <- "Liechtenstein"
+         
+         
+         zdruzena<-merge(tabela_EU_stevilo_umrlih_prometne_nesrece,Populacija_drzav,by="Drzava",na.rm=TRUE)
+         #zdruzena$Stevilo_umrlih[is.na(zdruzena$Stevilo_umrlih)] <- 0
+         zdruzena$Stevilo_prebivalcev<-gsub(",","",zdruzena$Stevilo_prebivalcev)
+         
+         
+         zdruzena$kolicnik_nevarnosti<-round(((as.numeric(zdruzena$Stevilo_umrlih)/as.numeric(zdruzena$Stevilo_prebivalcev)))*100000,2)
+        
+         
+           
          graf_Mazda<-ggplot(Mazda_prodaja, aes(x=Mesec, y=Povprečno, group=1)) + geom_line(colour="red")+
                                ggtitle("Povprečna prodaja avtomobilov\nznamke Mazda(2012-2015) v tisočih po mesecih")+
                                theme(plot.title = element_text(lineheight=.8, face="bold"),axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) 
