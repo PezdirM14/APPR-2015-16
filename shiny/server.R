@@ -12,9 +12,11 @@ source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
 
 shinyServer( function(input,output){ 
   output$graf<-renderPlot({
-    ggplot(filter(zdruzena,Leto==input$leto))+aes(x=Drzava,y=kolicnik_nevarnosti)+geom_point(colour="red")
+    ggplot(filter(zdruzena,Leto==input$leto))+aes(x=Drzava,y=kolicnik_nevarnosti)+geom_point(colour="red")+ggtitle("Količnik nevarnosti za države v določenem letu")
   })
-  
+  output$graf2<-renderPlot({
+    ggplot(filter(zdruzena, Drzava==input$Drzava))+aes(x=Drzava, y=kolicnik_nevarnosti)+geom_point(colour="blue")+geom_text(aes(label=Leto),position = position_jitter(h =0.1, w = 0.1),angle=30,vjust=0.2,hjust=0.2)+ggtitle("Količnik nevarnosti za izbrane države po podatkih, ki so na voljo")
+  })
   }
 )
 

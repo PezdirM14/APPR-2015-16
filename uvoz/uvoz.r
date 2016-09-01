@@ -312,12 +312,12 @@
          zdruzena<-merge(tabela_EU_stevilo_umrlih_prometne_nesrece,Populacija_drzav,by="Drzava",na.rm=TRUE)
          #zdruzena$Stevilo_umrlih[is.na(zdruzena$Stevilo_umrlih)] <- 0
          zdruzena$Stevilo_prebivalcev<-gsub(",","",zdruzena$Stevilo_prebivalcev)
-         
-         
          zdruzena$kolicnik_nevarnosti<-round(((as.numeric(zdruzena$Stevilo_umrlih)/as.numeric(zdruzena$Stevilo_prebivalcev)))*100000,2)
+       
+         
          
          graf_nevarnosti<-ggplot(filter(zdruzena,Leto==2004))+aes(x=Drzava,y=kolicnik_nevarnosti)+geom_point(colour="red")
-         
+         graf_drzav<-ggplot(filter(zdruzena, Drzava==c("Germany","Greece")))+aes(x=Drzava, y=kolicnik_nevarnosti)+geom_point(colour="blue")
          
          Vozaci<-ggplot(tabela_Cestni_javni_linijski_prevoz_medkrajevni_in_mednarodni_SLO)+
            aes(x=Leto,y=Število.v.tisočih)+
