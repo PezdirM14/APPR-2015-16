@@ -2,11 +2,11 @@
 title: "Poročilo pri predmetu Analiza podatkov s programom R"
 author: "Martin Pezdir"
 output:
+  html_document: default
   pdf_document:
     includes:
       in_header: lib/styles.sty
     latex_engine: xelatex
-  html_document: default
   word_document: default
 ---
 
@@ -206,6 +206,7 @@ Med državami izrazito prevladuje Nemčija, kot država z največ registracijami
 
 \pagebreak
 
+# Četrta faza-Napredna analiza
 Ogledali smo si tudi prilagajanje in pri tem opazovali glavno spremenljivko, število novih registracij avtomobilov na evropskem trgu, v razmerju z dvema spremenljivkama-število vozačev in število umrlih v prometnih nesrečah. 
 
 Ko smo primerjali nove registracije s številom vozačev ni bilo posebne korelacije.
@@ -215,9 +216,18 @@ povezava_avtomobili_vozaci
 ```
 
 \pagebreak
-
 Pri opazovanju števila prodanih avtomobilov s številom smrtnih žrtev, pa je bilo opaziti šibko povezavo, kar je dokaj logično, saj bi lahko razmišljali, da več kot je avtomobilov, več je prometnih nesreč.
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 povezava_smrti_avtomobili
 ```
+
+\pagebreak
+
+Za konec smo naredili še svojo aplikacji shiny, v kateri smo primerjali smrtnost v prometnih nesrečah na prebivalca. Torej število umrlih v prometnih nesrečah smo delili s številom prebivalcev v posamezni državi ter to številko pomnožili s 100000, da smo dobili primerljive in jasne rezultate. Za najvarnejšo državo, kar se smrtnosti na cestah tiče se je izkazal Liechtenstein, za najnevarnejšo pa Latvia, to je bilo leta 2004. Po vstopu v Evropsko Unijo pa se je njihovo stanje izboljšalo in v naslednjih letih so v glede nevarnosti cest prevladovale države kot so Romunija in Grčija. Slovenija je glede varnosti v sredini evropskih držav. Naslednji graf prikazuje količnik nevarnosti Slovenije v letih od 2004 do 2012.
+
+```{r,echo=FALSE,results='hide',message=FALSE,warning=FALSE}
+graf_nevarnosti
+```
+
+

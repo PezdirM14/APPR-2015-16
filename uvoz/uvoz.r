@@ -316,7 +316,7 @@
        
          
          
-         graf_nevarnosti<-ggplot(filter(zdruzena,Leto==2004))+aes(x=Drzava,y=kolicnik_nevarnosti)+geom_point(colour="red")
+         graf_nevarnosti<-ggplot(filter(zdruzena,Drzava=="Slovenia"))+aes(x=Drzava,y=kolicnik_nevarnosti)+geom_point(colour="red")+geom_text(aes(label=Leto))
          graf_drzav<-ggplot(filter(zdruzena, Drzava==c("Germany","Greece")))+aes(x=Drzava, y=kolicnik_nevarnosti)+geom_point(colour="blue")
          
          Vozaci<-ggplot(tabela_Cestni_javni_linijski_prevoz_medkrajevni_in_mednarodni_SLO)+
