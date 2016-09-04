@@ -129,8 +129,7 @@
          tabela_zemljevid<-tabela_EU_registracije_avtomobili
          tabela_EU_registracije_avtomobili$vozaci<-tabela_EU_vozaci$`Stevilo vozacev`
          tabela_EU_registracije_avtomobili$nesrece<-tabela_EU_stevilo_umrlih_prometne_nesrece$`Stevilo_umrlih`
-         
-         
+
          
          
          Leto<-tabela_Cestni_javni_linijski_prevoz_medkrajevni_in_mednarodni_SLO$Leto
@@ -142,11 +141,10 @@
            ggtitle("Vozači v javnem linijskem prevozu(medkrajevni in mednarodni) ")+
            theme(plot.title = element_text(lineheight=.8, face="bold"))
          
-
          
          
          
-         
+     
          
  #html
 

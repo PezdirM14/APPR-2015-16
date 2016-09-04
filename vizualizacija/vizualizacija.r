@@ -32,20 +32,20 @@ svet<-uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdat
 izbrano_leto<-tabela_EU_registracije_avtomobili %>% filter(Leto == 2009)
 m <- match(svet$name_sort, izbrano_leto$Drzava)
 svet$izbrano_leto <- izbrano_leto$`Stevilo_registracij`[m]
-
+svet$izbrano_leto<-round(svet$izbrano_leto/1000000,2)
 evropa<-pretvori.zemljevid(svet, svet$continent=="Europe")
 
 leto_2009<-ggplot()+geom_polygon(data=evropa, aes(x=long, y=lat, group= group,fill=izbrano_leto),
-                      color= "grey") + xlim(-10,50) + ylim(34,72)+scale_fill_gradientn(colours=RColorBrewer::brewer.pal(n = 11, name = "Spectral"))
+                      color= "grey") + xlim(-10,50) + ylim(34,72)+scale_fill_gradientn(colours=RColorBrewer::brewer.pal(n = 11, name = "Spectral"))+ ggtitle("Število novih registracij avtomobilov leta 2009 v Evropi, v milijonih")+ theme(legend.title=element_blank())
 
 
 
-povezava_avtomobili_vozaci<-ggplot(tabela_EU_registracije_avtomobili,aes(x=Stevilo_registracij, y=vozaci)) +
-                                          geom_point(na.rm = TRUE) + geom_smooth(method="lm", na.rm = TRUE)
+povezava_avtomobili_vozaci<-ggplot(tabela_EU_registracije_avtomobili,aes(x=Stevilo_registracij/1000000, y=vozaci/1000000)) +
+                                          geom_point(na.rm = TRUE) + geom_smooth(method="lm", na.rm = TRUE)+xlab("Število registracij avtomobilov v mio")+ylab("Število vozačev v mio")+ggtitle("Povezava med številom registracij avtomobilov ter številom vozačev")
 
 
-povezava_smrti_avtomobili<-ggplot(tabela_EU_registracije_avtomobili,aes(x=Stevilo_registracij, y=nesrece))+
-                                          geom_point(na.rm = TRUE) + geom_smooth(method="lm",formula= y~x+I(x^2)+I(x^3)+I(x^4) , na.rm = TRUE)
+povezava_smrti_avtomobili<-ggplot(tabela_EU_registracije_avtomobili,aes(x=Stevilo_registracij/1000000, y=nesrece/1000000))+
+                                          geom_point(na.rm = TRUE) + geom_smooth(method="lm",formula= y~x+I(x^2)+I(x^3)+I(x^4) , na.rm = TRUE)+ylab("Število nesreč v mio")+xlab("Število registracij avtomobilov v mio")+ggtitle("Povezava med številom registracij avtomobilov ter številom nesreč")
 
  
 
