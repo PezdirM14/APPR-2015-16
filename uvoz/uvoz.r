@@ -24,8 +24,12 @@
 
 #Podatki za Slovenijo
 
+         source("lib/libraries.r")
+
          tabela_vozači_SLO<-read.csv2("podatki/vozaci.csv", skip=1,na.strings = "-", stringsAsFactors = FALSE,
                                   fileEncoding = "UTF-8", col.names = c("Vrsta prevoza","Leto", "Število potnikov"))
+        
+         
   
          tabela_registracije_SLO<-read.csv2("podatki/registracije.csv",na.strings = "-",stringsAsFactors = FALSE,
                                   fileEncoding = "Windows-1250",col.names = c("Leto","2004", "2005","2006","2007","2008","2009","2010","2011","2012","2013","2014"))
@@ -154,7 +158,8 @@
          stran <- html_session(url) %>% read_html(encoding = "Windows-1250")
          Audi_prodaja<- stran %>% html_nodes(xpath ="//table") %>% .[[1]]%>% html_table(fill=TRUE)
          Audi_prodaja<-Audi_prodaja[-1,]
-         names(Audi_prodaja)<-c("Mesec","2012","2013","2014","2015")
+         names(Audi_prodaja)<-c("Mesec","2012","2013","2014","2015","2016")
+         Audi_prodaja$`2016`<-NULL
          Audi_prodaja$Mesec <- factor(Audi_prodaja$Mesec, levels =Audi_prodaja$Mesec,
                                        Audi_prodaja$Mesec, ordered = TRUE)
          Audi_prodaja[-1] <- apply(Audi_prodaja[-1], 2, as.numeric)
@@ -167,8 +172,9 @@
          stran2<-html_session(url2) %>% read_html(encoding = "Windows-1250")
          
          Bmw_prodaja<-stran2%>% html_nodes(xpath ="//table") %>% .[[1]]%>% html_table(fill=TRUE)
-         names(Bmw_prodaja)<-c("Mesec","2012","2013","2014","2015")
+         names(Bmw_prodaja)<-c("Mesec","2012","2013","2014","2015","2016")
          Bmw_prodaja<-Bmw_prodaja[-1,]
+         Bmw_prodaja$`2016`<-NULL
          Bmw_prodaja$Mesec <- factor(Bmw_prodaja$Mesec, levels =
                                         Bmw_prodaja$Mesec, ordered = TRUE)
          Bmw_prodaja[-1] <- apply(Bmw_prodaja[-1], 2, as.numeric)
@@ -180,7 +186,8 @@
          stran3<-html_session(url3) %>% read_html(encoding = "Windows-1250")
          Citroen_prodaja<-stran3%>% html_nodes(xpath ="//table") %>% .[[1]]%>% html_table(fill=TRUE)
          Citroen_prodaja<-Citroen_prodaja[-1,]
-         names(Citroen_prodaja)<-c("Mesec","2012","2013","2014","2015")
+         names(Citroen_prodaja)<-c("Mesec","2012","2013","2014","2015","2016")
+         Citroen_prodaja$`2016`<-NULL
          Citroen_prodaja$Povprečno<-round((as.numeric(Citroen_prodaja$`2012`)+as.numeric(Citroen_prodaja$`2013`)+as.numeric(Citroen_prodaja$`2014`)+as.numeric(Citroen_prodaja$`2015`))/4,3)
          Citroen_prodaja$Mesec <- factor(Citroen_prodaja$Mesec, levels =
                                        Citroen_prodaja$Mesec, ordered = TRUE)
@@ -193,7 +200,8 @@
          stran4<-html_session(url4) %>% read_html(encoding = "Windows-1250")
          Ford_prodaja<-stran4%>% html_nodes(xpath ="//table") %>% .[[1]]%>% html_table(fill=TRUE)
          Ford_prodaja<-Ford_prodaja[-1,]
-         names(Ford_prodaja)<-c("Mesec","2012","2013","2014","2015")
+         names(Ford_prodaja)<-c("Mesec","2012","2013","2014","2015","2016")
+         Ford_prodaja$`2016`<-NULL
          Ford_prodaja$Povprečno<-round((as.numeric(Ford_prodaja$`2012`)+as.numeric(Ford_prodaja$`2013`)+as.numeric(Ford_prodaja$`2014`)+as.numeric(Ford_prodaja$`2015`))/4,3)
          Ford_prodaja$Mesec <- factor(Ford_prodaja$Mesec, levels =
                                        Ford_prodaja$Mesec, ordered = TRUE)
@@ -206,7 +214,8 @@
          stran5<-html_session(url5) %>% read_html(encoding = "Windows-1250")
          Fiat_prodaja<-stran5%>% html_nodes(xpath ="//table") %>% .[[1]]%>% html_table(fill=TRUE)
          Fiat_prodaja<-Fiat_prodaja[-1,]
-         names(Fiat_prodaja)<-c("Mesec","2012","2013","2014","2015")
+         names(Fiat_prodaja)<-c("Mesec","2012","2013","2014","2015","2016")
+         Fiat_prodaja$`2016`<-NULL
          Fiat_prodaja$Povprečno<-round((as.numeric(Fiat_prodaja$`2012`)+as.numeric(Fiat_prodaja$`2013`)+as.numeric(Fiat_prodaja$`2014`)+as.numeric(Fiat_prodaja$`2015`))/4,3)
          Fiat_prodaja$Mesec <- factor(Fiat_prodaja$Mesec, levels =
                                        Fiat_prodaja$Mesec, ordered = TRUE)
@@ -219,7 +228,8 @@
          stran6<-html_session(url6) %>% read_html(encoding = "Windows-1250")
          Mazda_prodaja<-stran6%>% html_nodes(xpath ="//table") %>% .[[1]]%>% html_table(fill=TRUE)
          Mazda_prodaja<-Mazda_prodaja[-1,]
-         names(Mazda_prodaja)<-c("Mesec","2012","2013","2014","2015")
+         names(Mazda_prodaja)<-c("Mesec","2012","2013","2014","2015","2016")
+         Mazda_prodaja$`2016`<-NULL
          Mazda_prodaja$Povprečno<-round((as.numeric(Mazda_prodaja$`2012`)+as.numeric(Mazda_prodaja$`2013`)+as.numeric(Mazda_prodaja$`2014`)+as.numeric(Mazda_prodaja$`2015`))/4,3)
          Mazda_prodaja$Mesec <- factor(Mazda_prodaja$Mesec, levels =
                                        Mazda_prodaja$Mesec, ordered = TRUE)
@@ -232,7 +242,8 @@
          stran7<-html_session(url7) %>% read_html(encoding = "Windows-1250")
          Peugeot_prodaja<-stran7%>% html_nodes(xpath ="//table") %>% .[[1]]%>% html_table(fill=TRUE)
          Peugeot_prodaja<-Peugeot_prodaja[-1,]
-         names(Peugeot_prodaja)<-c("Mesec","2012","2013","2014","2015")
+         names(Peugeot_prodaja)<-c("Mesec","2012","2013","2014","2015","2016")
+         Peugeot_prodaja$`2016`<-NULL
          Peugeot_prodaja$Povprečno<-round((as.numeric(Peugeot_prodaja$`2012`)+as.numeric(Peugeot_prodaja$`2013`)+as.numeric(Peugeot_prodaja$`2014`)+as.numeric(Peugeot_prodaja$`2015`))/4,3)
          Peugeot_prodaja$Mesec <- factor(Peugeot_prodaja$Mesec, levels =
                                        Peugeot_prodaja$Mesec, ordered = TRUE)
@@ -245,7 +256,8 @@
          stran8<-html_session(url8) %>% read_html(encoding = "Windows-1250")
          Renault_prodaja<-stran8%>% html_nodes(xpath ="//table") %>% .[[1]]%>% html_table(fill=TRUE)
          Renault_prodaja<-Renault_prodaja[-1,]
-         names(Renault_prodaja)<-c("Mesec","2012","2013","2014","2015")
+         names(Renault_prodaja)<-c("Mesec","2012","2013","2014","2015","2016")
+         Renault_prodaja$`2016`<-NULL
          Renault_prodaja$Povprečno<-round((as.numeric(Renault_prodaja$`2012`)+as.numeric(Renault_prodaja$`2013`)+as.numeric(Renault_prodaja$`2014`)+as.numeric(Renault_prodaja$`2015`))/4,3)
          Renault_prodaja$Mesec <- factor(Renault_prodaja$Mesec, levels =
                                        Renault_prodaja$Mesec, ordered = TRUE)
@@ -258,7 +270,8 @@
          stran9<-html_session(url9) %>% read_html(encoding = "Windows-1250")
          Opel_prodaja<-stran9%>% html_nodes(xpath ="//table") %>% .[[1]]%>% html_table(fill=TRUE)
          Opel_prodaja<-Opel_prodaja[-1,]
-         names(Opel_prodaja)<-c("Mesec","2012","2013","2014","2015")
+         names(Opel_prodaja)<-c("Mesec","2012","2013","2014","2015","2016")
+         Opel_prodaja$`2016`<-NULL
          Opel_prodaja$Povprečno<-round((as.numeric(Opel_prodaja$`2012`)+as.numeric(Opel_prodaja$`2013`)+as.numeric(Opel_prodaja$`2014`)+as.numeric(Opel_prodaja$`2015`))/4,3)
          Opel_prodaja$Mesec <- factor(Opel_prodaja$Mesec, levels =
                                        Opel_prodaja$Mesec, ordered = TRUE)

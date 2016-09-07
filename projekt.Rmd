@@ -8,6 +8,8 @@ output:
       in_header: lib/styles.sty
     latex_engine: xelatex
   word_document: default
+
+
 ---
 
 ```{r setup, echo=FALSE, results='hide', message=FALSE,warning=FALSE}
@@ -161,13 +163,13 @@ Tabela Prodaja vsebuje združene vse podatke, ki smo jih pridobili o prodaji pos
 
 Po drugi fazi smo podatke, ki še niso bili v obliki 'tidy data' preuredili v tako obliko. Primer preurejene tabele v zahtevano obliko, je na primer naslednja tabela:
 
-```{r,echo=FALSE,message=FALSE}
+```{r,echo=FALSE,message=FALSE,warning=FALSE}
 kable(head(tabela_EU_stevilo_umrlih_prometne_nesrece))
 ```
 
 Spremenljivke tu so država, leto in število umrlih. Podobno smo storili tudi v nekaterih drugih tabelah, navedenih zgoraj, v drugi fazi.
 
-```{r vizualizacija, echo=FALSE,results='hide',message='FALSE'}
+```{r vizualizacija, echo=FALSE,results='hide',message='FALSE',warning=FALSE,results='hide'}
 source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
 ```
 
@@ -195,10 +197,10 @@ Tu smo ugotovili, da je v Evropi prodanih največ avtomobilov znamke Ford, najma
 
 \pagebreak
 
-Preverjali smo tudi gostoto prodanih avtomobilov glede na posamezno evropsko državo in dobili naslednji zemljevid, na katerem je z barvami prikazana prodaja avtomobilov v letu 2013.
+Preverjali smo tudi gostoto prodanih avtomobilov glede na posamezno evropsko državo in dobili naslednji zemljevid, na katerem je z barvami prikazana prodaja avtomobilov v letu 2009.
 
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE,warning=FALSE}
 leto_2009
 ```
 
@@ -226,8 +228,8 @@ povezava_smrti_avtomobili
 
 Za konec smo naredili še svojo aplikacji shiny, v kateri smo primerjali smrtnost v prometnih nesrečah na prebivalca. Torej število umrlih v prometnih nesrečah smo delili s številom prebivalcev v posamezni državi ter to številko pomnožili s 100000, da smo dobili primerljive in jasne rezultate. Za najvarnejšo državo, kar se smrtnosti na cestah tiče se je izkazal Liechtenstein, za najnevarnejšo pa Latvia, to je bilo leta 2004. Po vstopu v Evropsko Unijo pa se je njihovo stanje izboljšalo in v naslednjih letih so v glede nevarnosti cest prevladovale države kot so Romunija in Grčija. Slovenija je glede varnosti v sredini evropskih držav. Naslednji graf prikazuje količnik nevarnosti Slovenije v letih od 2004 do 2012.
 
+
+
 ```{r,echo=FALSE,results='hide',message=FALSE,warning=FALSE}
 graf_nevarnosti
 ```
-
-

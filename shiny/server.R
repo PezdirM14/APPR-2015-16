@@ -17,8 +17,12 @@ shinyServer( function(input,output){
   output$graf2<-renderPlot({
     ggplot(filter(zdruzena, Drzava %in% input$Drzava))+aes(x=Leto, y=kolicnik_nevarnosti,colour=Drzava)+geom_point(size=5)+ggtitle("Količnik nevarnosti za izbrane države po podatkih, ki so na voljo")
   })
+  
   }
-)
+
+  )
+
+
 
 
 
